@@ -3,9 +3,7 @@ Many have entered the Abyssal Colosseum; none have left. Despite promises of fam
 
 ## Team Members
 ### AceofFlips - Madeleine Brown
-### [Now add each collaborator the same way]
-* [and their contributions]
-* [using this format if you want bullets]
+* Lead Designer
 
 
 ## Reflections
