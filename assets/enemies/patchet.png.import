@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bl6hl4knwc0gn"
-path="res://.godot/imported/Aviaunanim.png-5274e48d86a1fd8038aaf94b15cedff7.ctex"
+uid="uid://v0ot5cw2teqr"
+path="res://.godot/imported/patchet.png-714d48543bdd01b0423030435b357945.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/avia/Aviaunanim.png"
-dest_files=["res://.godot/imported/Aviaunanim.png-5274e48d86a1fd8038aaf94b15cedff7.ctex"]
+source_file="res://assets/enemies/patchet.png"
+dest_files=["res://.godot/imported/patchet.png-714d48543bdd01b0423030435b357945.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
