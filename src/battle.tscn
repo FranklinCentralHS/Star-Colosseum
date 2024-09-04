@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d21buvmdo131j"]
+[gd_scene load_steps=8 format=3 uid="uid://d21buvmdo131j"]
 
 [ext_resource type="Texture2D" uid="uid://b06nafjip4ojf" path="res://assets/backgrounds/placeholderbattlebg.jpg" id="1_q5pi4"]
 [ext_resource type="Texture2D" uid="uid://bl6hl4knwc0gn" path="res://assets/characters/avia/Aviaunanim.png" id="2_brsj4"]
@@ -19,6 +19,21 @@ expand_margin_bottom = 1.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_galor"]
 bg_color = Color(0, 0.782773, 0.289492, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yexm7"]
+bg_color = Color(0.0382337, 0.0761547, 0.142569, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vo2q5"]
+bg_color = Color(0.198081, 0.566394, 1, 1)
+
 [node name="Battle" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -37,12 +52,12 @@ offset_bottom = 720.0
 texture = ExtResource("1_q5pi4")
 
 [node name="Aviaunanim" type="Sprite2D" parent="."]
-position = Vector2(498, 476)
+position = Vector2(502, 420)
 scale = Vector2(2, 2)
 texture = ExtResource("2_brsj4")
 
 [node name="Patchet" type="Sprite2D" parent="."]
-position = Vector2(852, 496)
+position = Vector2(860, 459)
 scale = Vector2(2, 2)
 texture = ExtResource("3_so6n8")
 
@@ -67,15 +82,15 @@ offset_top = 591.0
 offset_right = 656.0
 offset_bottom = 721.0
 
-[node name="AviaHP" type="ProgressBar" parent="PlayerStats"]
+[node name="AstHP" type="ProgressBar" parent="PlayerStats"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 144.5
-offset_top = 83.0
-offset_right = 306.5
-offset_bottom = 110.0
+offset_left = 156.5
+offset_top = 89.0
+offset_right = 318.5
+offset_bottom = 116.0
 grow_horizontal = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_bhe5f")
 theme_override_styles/fill = SubResource("StyleBoxFlat_galor")
@@ -84,3 +99,121 @@ step = 1.0
 value = 25.0
 rounded = true
 show_percentage = false
+
+[node name="HP" type="Label" parent="PlayerStats/AstHP"]
+layout_mode = 0
+offset_left = -33.0
+offset_top = 3.0
+offset_right = -4.0
+offset_bottom = 26.0
+text = "HP:"
+
+[node name="Value" type="Label" parent="PlayerStats/AstHP"]
+layout_mode = 0
+offset_left = 61.0
+offset_top = -24.0
+offset_right = 104.0
+offset_bottom = -1.0
+text = "25/50"
+
+[node name="AstIM" type="ProgressBar" parent="PlayerStats/AstHP"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_top = -62.0
+offset_right = 82.0
+offset_bottom = -35.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_yexm7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vo2q5")
+max_value = 20.0
+step = 1.0
+value = 10.0
+rounded = true
+show_percentage = false
+
+[node name="IM" type="Label" parent="PlayerStats/AstHP/AstIM"]
+layout_mode = 0
+offset_left = -33.0
+offset_top = 3.0
+offset_right = -4.0
+offset_bottom = 26.0
+text = "IM:"
+
+[node name="Value" type="Label" parent="PlayerStats/AstHP/AstIM"]
+layout_mode = 0
+offset_left = 61.0
+offset_top = -24.0
+offset_right = 104.0
+offset_bottom = -1.0
+text = "10/20"
+
+[node name="AviHP" type="ProgressBar" parent="PlayerStats"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -78.5
+offset_top = 90.0
+offset_right = 83.5
+offset_bottom = 117.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bhe5f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_galor")
+max_value = 40.0
+step = 1.0
+value = 20.0
+rounded = true
+show_percentage = false
+
+[node name="HP" type="Label" parent="PlayerStats/AviHP"]
+layout_mode = 0
+offset_left = -33.0
+offset_top = 3.0
+offset_right = -4.0
+offset_bottom = 26.0
+text = "HP:"
+
+[node name="Value" type="Label" parent="PlayerStats/AviHP"]
+layout_mode = 0
+offset_left = 61.0
+offset_top = -24.0
+offset_right = 104.0
+offset_bottom = -1.0
+text = "20/40"
+
+[node name="AviIM" type="ProgressBar" parent="PlayerStats/AviHP"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_top = -62.0
+offset_right = 82.0
+offset_bottom = -35.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_yexm7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vo2q5")
+max_value = 30.0
+step = 1.0
+value = 15.0
+rounded = true
+show_percentage = false
+
+[node name="IM" type="Label" parent="PlayerStats/AviHP/AviIM"]
+layout_mode = 0
+offset_left = -33.0
+offset_top = 3.0
+offset_right = -4.0
+offset_bottom = 26.0
+text = "IM:"
+
+[node name="Value" type="Label" parent="PlayerStats/AviHP/AviIM"]
+layout_mode = 0
+offset_left = 61.0
+offset_top = -24.0
+offset_right = 104.0
+offset_bottom = -1.0
+text = "15/30"
