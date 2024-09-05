@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="Star Colosseum"
+config/tags=PackedStringArray("2d")
 run/main_scene="res://src/battle.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://assets/characters/avia/Aviaunanim.png"
 
 [display]
 
