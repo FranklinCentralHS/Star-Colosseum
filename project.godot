@@ -16,6 +16,10 @@ run/main_scene="res://src/battle.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://assets/characters/avia/Aviaunanim.png"
 
+[autoload]
+
+Stats="*res://src/stats.gd"
+
 [display]
 
 window/size/viewport_width=1280

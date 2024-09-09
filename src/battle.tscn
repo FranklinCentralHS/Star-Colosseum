@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://d21buvmdo131j"]
+[gd_scene load_steps=25 format=3 uid="uid://d21buvmdo131j"]
 
 [ext_resource type="Texture2D" uid="uid://dhfu860nq6gee" path="res://assets/backgrounds/battlebg.png" id="1_fn0o5"]
+[ext_resource type="Script" path="res://src/battle.gd" id="1_wypbb"]
 [ext_resource type="Texture2D" uid="uid://bl6hl4knwc0gn" path="res://assets/characters/avia/Aviaunanim.png" id="2_brsj4"]
 [ext_resource type="Theme" uid="uid://cpp0f50owjch8" path="res://themes/battleboxes.tres" id="3_q3k0k"]
 [ext_resource type="Texture2D" uid="uid://v0ot5cw2teqr" path="res://assets/enemies/patchet.png" id="3_so6n8"]
@@ -64,6 +65,33 @@ bg_color = Color(0.462745, 0.713726, 0.894118, 0.654902)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05cdq"]
 bg_color = Color(0.376471, 0.282353, 0.576471, 0.654902)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqc3w"]
+bg_color = Color(0.166135, 0.13055, 0.248006, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8h7c"]
+bg_color = Color(0.602539, 0.383674, 0.894434, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jvso3"]
+bg_color = Color(0.174492, 0.268295, 0.187534, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_es2c1"]
+bg_color = Color(0.262745, 0.427451, 0.223529, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_agfup"]
+bg_color = Color(0.172549, 0.266667, 0.188235, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqhfg"]
+bg_color = Color(0.172549, 0.266667, 0.188235, 1)
+
 [node name="Battle" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -73,6 +101,7 @@ offset_left = -2.0
 offset_right = -2.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_wypbb")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
@@ -82,7 +111,7 @@ offset_bottom = 720.0
 texture = ExtResource("1_fn0o5")
 
 [node name="Aviaunanim" type="Sprite2D" parent="."]
-position = Vector2(421, 384)
+position = Vector2(383, 343)
 scale = Vector2(2, 2)
 texture = ExtResource("2_brsj4")
 
@@ -98,6 +127,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_wkuu6")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_g43c7")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kpmpl")
 text = "Attack"
+metadata/_edit_use_anchors_ = true
 
 [node name="Magic" type="Button" parent="Aviaunanim"]
 offset_left = 53.5
@@ -113,6 +143,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_83sjm")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kpmpl")
 action_mode = 0
 text = "Magic"
+metadata/_edit_use_anchors_ = true
 
 [node name="Skills" type="Button" parent="Aviaunanim"]
 offset_left = 71.0
@@ -129,6 +160,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_kpmpl")
 action_mode = 0
 text = "Skills
 "
+metadata/_edit_use_anchors_ = true
 
 [node name="Items" type="Button" parent="Aviaunanim"]
 offset_left = 52.0
@@ -145,6 +177,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_kpmpl")
 action_mode = 0
 text = "Items
 "
+metadata/_edit_use_anchors_ = true
 
 [node name="Tactics" type="Button" parent="Aviaunanim"]
 offset_left = 29.0
@@ -160,13 +193,14 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_83sjm")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kpmpl")
 action_mode = 0
 text = "Tactics"
+metadata/_edit_use_anchors_ = true
 
-[node name="Patchet" type="Sprite2D" parent="."]
-position = Vector2(887, 402)
+[node name="Patchett" type="Sprite2D" parent="."]
+position = Vector2(898, 355)
 scale = Vector2(2, 2)
 texture = ExtResource("3_so6n8")
 
-[node name="En1HP" type="ProgressBar" parent="Patchet"]
+[node name="En1HP" type="ProgressBar" parent="Patchett"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -181,6 +215,7 @@ value = 50.0
 show_percentage = false
 
 [node name="AviStats" type="Panel" parent="."]
+layout_mode = 0
 offset_left = 23.0
 offset_top = 590.0
 offset_right = 244.0
@@ -345,6 +380,7 @@ theme = ExtResource("3_q3k0k")
 text = "10/20"
 
 [node name="BroStats" type="Panel" parent="AstStats"]
+layout_mode = 0
 offset_left = 246.0
 offset_right = 467.0
 offset_bottom = 130.0
@@ -426,3 +462,135 @@ offset_right = 104.0
 offset_bottom = -1.0
 theme = ExtResource("3_q3k0k")
 text = "0/0"
+
+[node name="EMStats" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 839.0
+offset_top = 644.0
+offset_right = 1206.0
+offset_bottom = 712.0
+
+[node name="EM" type="ProgressBar" parent="EMStats"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -141.5
+offset_top = -5.0
+offset_right = 153.5
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_rqc3w")
+theme_override_styles/fill = SubResource("StyleBoxFlat_q8h7c")
+step = 1.0
+value = 50.0
+rounded = true
+show_percentage = false
+
+[node name="EM" type="Label" parent="EMStats/EM"]
+layout_mode = 0
+offset_left = -33.0
+offset_top = 3.0
+offset_right = -4.0
+offset_bottom = 26.0
+theme = ExtResource("3_q3k0k")
+text = "EM:"
+
+[node name="Value" type="Label" parent="EMStats/EM"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -27.5
+offset_top = -19.0
+offset_right = 27.5
+offset_bottom = 4.0
+grow_horizontal = 2
+theme = ExtResource("3_q3k0k")
+text = "50/100
+"
+
+[node name="TacticsPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 476.0
+offset_top = 151.0
+offset_right = 516.0
+offset_bottom = 191.0
+scale = Vector2(7.74298, 5.45789)
+theme_override_styles/panel = SubResource("StyleBoxFlat_jvso3")
+
+[node name="Run" type="Button" parent="TacticsPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = -15.0
+offset_right = 63.0
+offset_bottom = 16.0
+grow_vertical = 2
+scale = Vector2(0.610724, 0.271617)
+mouse_force_pass_scroll_events = false
+theme = ExtResource("3_q3k0k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x2rqo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_es2c1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_agfup")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mqhfg")
+action_mode = 0
+
+[node name="RunTxt" type="Label" parent="TacticsPanel/Run"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -26.8853
+offset_top = 4.04734
+offset_right = 0.114698
+offset_bottom = 20.0473
+grow_horizontal = 2
+scale = Vector2(0.472865, 1.43771)
+theme = ExtResource("3_q3k0k")
+text = "Run
+"
+
+[node name="Back" type="Button" parent="TacticsPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = 9.18519
+offset_right = 63.0
+offset_bottom = 40.1852
+grow_vertical = 2
+scale = Vector2(0.610724, 0.271617)
+mouse_force_pass_scroll_events = false
+theme = ExtResource("3_q3k0k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x2rqo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_es2c1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_agfup")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mqhfg")
+action_mode = 0
+
+[node name="BackTxt" type="Label" parent="TacticsPanel/Back"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -28.2706
+offset_top = 4.04734
+offset_right = 5.72939
+offset_bottom = 20.0473
+grow_horizontal = 2
+scale = Vector2(0.472865, 1.43771)
+theme = ExtResource("3_q3k0k")
+text = "Back
+"
+
+[connection signal="pressed" from="Aviaunanim/Tactics" to="." method="_on_tactics_pressed"]
+[connection signal="pressed" from="TacticsPanel/Run" to="." method="_on_run_pressed"]
+[connection signal="pressed" from="TacticsPanel/Back" to="." method="_on_back_pressed"]
