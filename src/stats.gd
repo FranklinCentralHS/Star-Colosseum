@@ -1,5 +1,9 @@
 extends Node
 
+# Universal stats
+var maxEM = 100
+var curEM = 100
+
 #Avia's stats
 var maxAviHealth = 30
 var curAviHealth = 30
@@ -20,7 +24,7 @@ var astDef = 4
 var maxBroHealth = 60
 var curBroHealth = 60
 var maxBroIM = 0
-var curBroIM = 0
+var curBroIM = -1
 var broAtk = 5
 var broDef = 3
 

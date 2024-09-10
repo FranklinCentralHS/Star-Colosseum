@@ -1,8 +1,24 @@
 extends Control
 
+#Export variables for enemy slots
+@export var enOne: Resource = null
+
 
 # Called when the node enters the scene tree for the first time.]
 func _ready() -> void:
+	#Set Value Bars for all HP, IM, and EM
+	set_bar($En1/En1Tex/En1HP, enOne.health, enOne.health)
+	set_bar($AviStats/AviHP, Stats.curAviHealth, Stats.maxAviHealth)
+	set_bar($AviStats/AviHP/AviIM, Stats.curAviIM, Stats.maxAviIM)
+	set_bar($AstStats/AstHP/AstIM, Stats.curAstIM, Stats.maxAstIM)
+	set_bar($AstStats/AstHP, Stats.curAstHealth, Stats.maxAstHealth)
+	set_bar($BroStats/BroHP, Stats.curBroHealth, Stats.maxBroHealth)
+	set_bar($BroStats/BroHP/BroIM, Stats.curBroIM, Stats.maxBroIM)
+	set_bar($EMStats/EM, Stats.curEM, Stats.maxEM)
+
+	#Set the enemies' texture to the assigned enemies
+	$En1/En1Tex.texture = enOne.texture
+
 	#Hide any menus that pop up later
 	$TacticsPanel.hide()
 
@@ -23,8 +39,12 @@ func _on_tactics_pressed() -> void:
 func _on_back_pressed() -> void:
 	$TacticsPanel.hide()
 
-
-func set_health(progress_bar,curHealth,maxHealth) -> void:
-	progress_bar.value = curHealth
-	progress_bar.max_value = maxHealth
-	progress_bar.get_node("Value").text = "%d/%d" % [curHealth,maxHealth]
+#Set Value Bars
+func set_bar(progressBar,curValue,maxValue) -> void:
+	progressBar.value = curValue
+	progressBar.max_value = maxValue
+	if curValue < 0:
+		curValue = 0 
+	#Check if a Value Bar has an on-screen counter, and set it if it does
+	if progressBar.has_node("Value"):
+		progressBar.get_node("Value").text = "%d/%d" % [curValue,maxValue]

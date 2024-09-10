@@ -1,8 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://d21buvmdo131j"]
+[gd_scene load_steps=26 format=3 uid="uid://d21buvmdo131j"]
 
 [ext_resource type="Texture2D" uid="uid://dhfu860nq6gee" path="res://assets/backgrounds/battlebg.png" id="1_fn0o5"]
 [ext_resource type="Script" path="res://src/battle.gd" id="1_wypbb"]
 [ext_resource type="Texture2D" uid="uid://bl6hl4knwc0gn" path="res://assets/characters/avia/Aviaunanim.png" id="2_brsj4"]
+[ext_resource type="Resource" uid="uid://c3gfcbgnam72c" path="res://src/patchett.tres" id="2_wi604"]
 [ext_resource type="Theme" uid="uid://cpp0f50owjch8" path="res://themes/battleboxes.tres" id="3_q3k0k"]
 [ext_resource type="Texture2D" uid="uid://v0ot5cw2teqr" path="res://assets/enemies/patchet.png" id="3_so6n8"]
 
@@ -26,6 +27,9 @@ bg_color = Color(0.454902, 0.454902, 0.454902, 0.611765)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_83sjm"]
 bg_color = Color(0.213841, 0.0790144, 0.0617745, 0.611765)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kekju"]
+bg_color = Color(0.239216, 0.941176, 0.337255, 0.654902)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhe5f"]
 bg_color = Color(0.0672831, 0.128184, 0.0786211, 1)
 border_width_left = 1
@@ -40,9 +44,6 @@ expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_galor"]
 bg_color = Color(0, 0.782773, 0.289492, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kekju"]
-bg_color = Color(0.239216, 0.941176, 0.337255, 0.654902)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yexm7"]
 bg_color = Color(0.0382337, 0.0761547, 0.142569, 1)
@@ -61,9 +62,6 @@ bg_color = Color(0.198081, 0.566394, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qjcg"]
 bg_color = Color(0.462745, 0.713726, 0.894118, 0.654902)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05cdq"]
-bg_color = Color(0.376471, 0.282353, 0.576471, 0.654902)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqc3w"]
 bg_color = Color(0.166135, 0.13055, 0.248006, 1)
@@ -92,6 +90,9 @@ bg_color = Color(0.172549, 0.266667, 0.188235, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqhfg"]
 bg_color = Color(0.172549, 0.266667, 0.188235, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05cdq"]
+bg_color = Color(0.376471, 0.282353, 0.576471, 0.654902)
+
 [node name="Battle" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -102,6 +103,7 @@ offset_right = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wypbb")
+enOne = ExtResource("2_wi604")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
@@ -195,25 +197,6 @@ action_mode = 0
 text = "Tactics"
 metadata/_edit_use_anchors_ = true
 
-[node name="Patchett" type="Sprite2D" parent="."]
-position = Vector2(898, 355)
-scale = Vector2(2, 2)
-texture = ExtResource("3_so6n8")
-
-[node name="En1HP" type="ProgressBar" parent="Patchett"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -100.0
-offset_top = -43.0
-offset_bottom = -34.0
-grow_horizontal = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_bhe5f")
-theme_override_styles/fill = SubResource("StyleBoxFlat_galor")
-step = 1.0
-value = 50.0
-show_percentage = false
-
 [node name="AviStats" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 23.0
@@ -251,9 +234,9 @@ text = "HP:"
 
 [node name="Value" type="Label" parent="AviStats/AviHP"]
 layout_mode = 0
-offset_left = 61.0
+offset_left = 60.0
 offset_top = -24.0
-offset_right = 104.0
+offset_right = 103.0
 offset_bottom = -1.0
 theme = ExtResource("3_q3k0k")
 text = "15/30
@@ -378,90 +361,6 @@ offset_right = 104.0
 offset_bottom = -1.0
 theme = ExtResource("3_q3k0k")
 text = "10/20"
-
-[node name="BroStats" type="Panel" parent="AstStats"]
-layout_mode = 0
-offset_left = 246.0
-offset_right = 467.0
-offset_bottom = 130.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_05cdq")
-
-[node name="BroHP" type="ProgressBar" parent="AstStats/BroStats"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = 24.5
-offset_right = 92.0
-offset_bottom = 51.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_bhe5f")
-theme_override_styles/fill = SubResource("StyleBoxFlat_galor")
-max_value = 60.0
-step = 1.0
-value = 30.0
-rounded = true
-show_percentage = false
-
-[node name="HP" type="Label" parent="AstStats/BroStats/BroHP"]
-layout_mode = 0
-offset_left = -33.0
-offset_top = 3.0
-offset_right = -4.0
-offset_bottom = 26.0
-theme = ExtResource("3_q3k0k")
-text = "HP:"
-
-[node name="Value" type="Label" parent="AstStats/BroStats/BroHP"]
-layout_mode = 0
-offset_left = 61.0
-offset_top = -24.0
-offset_right = 104.0
-offset_bottom = -1.0
-theme = ExtResource("3_q3k0k")
-text = "30/60
-"
-
-[node name="BroIM" type="ProgressBar" parent="AstStats/BroStats/BroHP"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -80.0
-offset_top = -62.0
-offset_right = 82.0
-offset_bottom = -35.0
-grow_horizontal = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_yexm7")
-theme_override_styles/fill = SubResource("StyleBoxFlat_vo2q5")
-min_value = -1.0
-max_value = 0.0
-step = 1.0
-value = -1.0
-rounded = true
-show_percentage = false
-
-[node name="IM" type="Label" parent="AstStats/BroStats/BroHP/BroIM"]
-layout_mode = 0
-offset_left = -34.5
-offset_top = 3.5
-offset_right = -5.5
-offset_bottom = 26.5
-theme = ExtResource("3_q3k0k")
-text = "IM:"
-
-[node name="Value" type="Label" parent="AstStats/BroStats/BroHP/BroIM"]
-layout_mode = 0
-offset_left = 61.0
-offset_top = -24.0
-offset_right = 104.0
-offset_bottom = -1.0
-theme = ExtResource("3_q3k0k")
-text = "0/0"
 
 [node name="EMStats" type="Panel" parent="."]
 layout_mode = 0
@@ -590,6 +489,119 @@ scale = Vector2(0.472865, 1.43771)
 theme = ExtResource("3_q3k0k")
 text = "Back
 "
+
+[node name="En1" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 794.0
+offset_top = 250.0
+offset_right = 999.0
+offset_bottom = 455.0
+
+[node name="En1Tex" type="TextureRect" parent="En1"]
+layout_mode = 2
+texture = ExtResource("3_so6n8")
+expand_mode = 4
+
+[node name="En1HP" type="ProgressBar" parent="En1/En1Tex"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -85.5
+offset_top = 7.0
+offset_right = 60.5
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bhe5f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_galor")
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="BroStats" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 515.0
+offset_top = 590.0
+offset_right = 736.0
+offset_bottom = 720.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_05cdq")
+
+[node name="BroHP" type="ProgressBar" parent="BroStats"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = 24.5
+offset_right = 92.0
+offset_bottom = 51.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bhe5f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_galor")
+max_value = 60.0
+step = 1.0
+value = 30.0
+rounded = true
+show_percentage = false
+
+[node name="HP" type="Label" parent="BroStats/BroHP"]
+layout_mode = 0
+offset_left = -33.0
+offset_top = 3.0
+offset_right = -4.0
+offset_bottom = 26.0
+theme = ExtResource("3_q3k0k")
+text = "HP:"
+
+[node name="Value" type="Label" parent="BroStats/BroHP"]
+layout_mode = 0
+offset_left = 61.0
+offset_top = -24.0
+offset_right = 104.0
+offset_bottom = -1.0
+theme = ExtResource("3_q3k0k")
+text = "30/60
+"
+
+[node name="BroIM" type="ProgressBar" parent="BroStats/BroHP"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_top = -62.0
+offset_right = 82.0
+offset_bottom = -35.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_yexm7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vo2q5")
+min_value = -1.0
+max_value = 0.0
+step = 1.0
+value = -1.0
+rounded = true
+show_percentage = false
+
+[node name="IM" type="Label" parent="BroStats/BroHP/BroIM"]
+layout_mode = 0
+offset_left = -34.5
+offset_top = 3.5
+offset_right = -5.5
+offset_bottom = 26.5
+theme = ExtResource("3_q3k0k")
+text = "IM:"
+
+[node name="Value" type="Label" parent="BroStats/BroHP/BroIM"]
+layout_mode = 0
+offset_left = 61.0
+offset_top = -24.0
+offset_right = 104.0
+offset_bottom = -1.0
+theme = ExtResource("3_q3k0k")
+text = "0/0"
 
 [connection signal="pressed" from="Aviaunanim/Tactics" to="." method="_on_tactics_pressed"]
 [connection signal="pressed" from="TacticsPanel/Run" to="." method="_on_run_pressed"]

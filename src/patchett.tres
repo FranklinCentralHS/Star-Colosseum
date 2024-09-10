@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://c3gfcbgnam72c"]
+
+[ext_resource type="Script" path="res://src/enemyA1.gd" id="1_o4j7m"]
+[ext_resource type="Texture2D" uid="uid://v0ot5cw2teqr" path="res://assets/enemies/patchet.png" id="2_vxx17"]
+
+[resource]
+script = ExtResource("1_o4j7m")
+name = "Enemy"
+texture = ExtResource("2_vxx17")
+health = 10
+damage = 3
