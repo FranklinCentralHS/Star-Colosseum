@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d21buvmdo131j"]
+[gd_scene load_steps=37 format=3 uid="uid://d21buvmdo131j"]
 
 [ext_resource type="Texture2D" uid="uid://dhfu860nq6gee" path="res://assets/backgrounds/battlebg.png" id="1_fn0o5"]
 [ext_resource type="Script" path="res://src/battle.gd" id="1_wypbb"]
@@ -27,9 +27,6 @@ bg_color = Color(0.454902, 0.454902, 0.454902, 0.611765)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_83sjm"]
 bg_color = Color(0.213841, 0.0790144, 0.0617745, 0.611765)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kekju"]
-bg_color = Color(0.239216, 0.941176, 0.337255, 0.654902)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhe5f"]
 bg_color = Color(0.0672831, 0.128184, 0.0786211, 1)
 border_width_left = 1
@@ -44,6 +41,32 @@ expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_galor"]
 bg_color = Color(0, 0.782773, 0.289492, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iffub"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_do57g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5x1fv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wqg5c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e04rd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wira5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxval"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1tq23"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_16j72"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x1pgl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3sgh1"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kekju"]
+bg_color = Color(0.239216, 0.941176, 0.337255, 0.654902)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yexm7"]
 bg_color = Color(0.0382337, 0.0761547, 0.142569, 1)
@@ -196,6 +219,52 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_kpmpl")
 action_mode = 0
 text = "Tactics"
 metadata/_edit_use_anchors_ = true
+
+[node name="En1" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 794.0
+offset_top = 250.0
+offset_right = 999.0
+offset_bottom = 455.0
+
+[node name="En1Tex" type="TextureRect" parent="En1"]
+layout_mode = 2
+texture = ExtResource("3_so6n8")
+expand_mode = 4
+
+[node name="En1HP" type="ProgressBar" parent="En1/En1Tex"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -85.5
+offset_top = 7.0
+offset_right = 60.5
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bhe5f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_galor")
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="En1Sel" type="Button" parent="En1/En1Tex"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 57.0
+offset_right = 147.0
+offset_bottom = 162.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iffub")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_do57g")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_5x1fv")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_wqg5c")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_e04rd")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_wira5")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_lxval")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_1tq23")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_16j72")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_x1pgl")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3sgh1")
 
 [node name="AviStats" type="Panel" parent="."]
 layout_mode = 0
@@ -490,34 +559,6 @@ theme = ExtResource("3_q3k0k")
 text = "Back
 "
 
-[node name="En1" type="VBoxContainer" parent="."]
-layout_mode = 2
-offset_left = 794.0
-offset_top = 250.0
-offset_right = 999.0
-offset_bottom = 455.0
-
-[node name="En1Tex" type="TextureRect" parent="En1"]
-layout_mode = 2
-texture = ExtResource("3_so6n8")
-expand_mode = 4
-
-[node name="En1HP" type="ProgressBar" parent="En1/En1Tex"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -85.5
-offset_top = 7.0
-offset_right = 60.5
-offset_bottom = 26.0
-grow_horizontal = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_bhe5f")
-theme_override_styles/fill = SubResource("StyleBoxFlat_galor")
-step = 1.0
-value = 50.0
-show_percentage = false
-
 [node name="BroStats" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 515.0
@@ -604,5 +645,8 @@ theme = ExtResource("3_q3k0k")
 text = "0/0"
 
 [connection signal="pressed" from="Aviaunanim/Tactics" to="." method="_on_tactics_pressed"]
+[connection signal="mouse_entered" from="En1/En1Tex/En1Sel" to="." method="_on_en_1_sel_mouse_entered"]
+[connection signal="mouse_exited" from="En1/En1Tex/En1Sel" to="." method="_on_en_1_sel_mouse_exited"]
+[connection signal="pressed" from="En1/En1Tex/En1Sel" to="." method="_on_en_1_sel_pressed"]
 [connection signal="pressed" from="TacticsPanel/Run" to="." method="_on_run_pressed"]
 [connection signal="pressed" from="TacticsPanel/Back" to="." method="_on_back_pressed"]

@@ -3,11 +3,13 @@ extends Control
 #Export variables for enemy slots
 @export var enOne: Resource = null
 
+var en1SelMat = preload("res://materialshader/en1.tres")
+
 
 # Called when the node enters the scene tree for the first time.]
 func _ready() -> void:
 	#Set Value Bars for all HP, IM, and EM
-	set_bar($En1/En1Tex/En1HP, enOne.health, enOne.health)
+	set_bar($En1/En1Tex/En1HP, enOne.curHealth, enOne.maxHealth)
 	set_bar($AviStats/AviHP, Stats.curAviHealth, Stats.maxAviHealth)
 	set_bar($AviStats/AviHP/AviIM, Stats.curAviIM, Stats.maxAviIM)
 	set_bar($AstStats/AstHP/AstIM, Stats.curAstIM, Stats.maxAstIM)
@@ -48,3 +50,17 @@ func set_bar(progressBar,curValue,maxValue) -> void:
 	#Check if a Value Bar has an on-screen counter, and set it if it does
 	if progressBar.has_node("Value"):
 		progressBar.get_node("Value").text = "%d/%d" % [curValue,maxValue]
+
+
+
+
+# Show enemy selection
+func _on_en_1_sel_mouse_entered() -> void:
+	$En1/En1Tex.material = en1SelMat
+func _on_en_1_sel_mouse_exited() -> void:
+	$En1/En1Tex.material = null
+
+#Do the funny basic attack
+func _on_en_1_sel_pressed() -> void:
+	enOne.curHealth -= Stats.str2var(Stats.curCharacter + "Atk")
+	
