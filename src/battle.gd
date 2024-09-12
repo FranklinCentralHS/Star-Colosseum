@@ -4,7 +4,10 @@ extends Control
 @export var enOne: Resource = null
 
 var en1SelMat = preload("res://materialshader/en1.tres")
-
+var disableChara = " "
+var rng = RandomNumberGenerator.new()
+var curChara:Dictionary = {"avi":true, "ast":false, "bro":false}
+var movedChara:Dictionary = {"avi":false,"ast":true,"bro":true}
 
 # Called when the node enters the scene tree for the first time.]
 func _ready() -> void:
@@ -51,7 +54,30 @@ func set_bar(progressBar,curValue,maxValue) -> void:
 	if progressBar.has_node("Value"):
 		progressBar.get_node("Value").text = "%d/%d" % [curValue,maxValue]
 
+#Manage character's turns
+func change_turn() -> void: 
+	if movedChara["avi"] == true: 
+		curChara["avi"] = false
+		en_attack()
+		curChara["avi"] = true
+		movedChara["avi"] = false
+		
 
+#All enemies attack
+func en_attack() -> void: 
+	var enOneTarg = rng.randi_range(1,3)
+	if enOneTarg == 1:
+		Stats.curAviHealth -= enOne.atk
+		set_bar($AviStats/AviHP, Stats.curAviHealth, Stats.maxAviHealth)
+
+	elif enOneTarg == 2: 
+		Stats.curAstHealth -= enOne.atk
+		set_bar($AstStats/AstHP, Stats.curAstHealth, Stats.maxAstHealth)
+	
+	elif enOneTarg == 3: 
+		Stats.curBroHealth -= enOne.atk
+		set_bar($BroStats/BroHP, Stats.curBroHealth, Stats.maxBroHealth)
+	
 
 
 # Show enemy selection
@@ -62,5 +88,10 @@ func _on_en_1_sel_mouse_exited() -> void:
 
 #Do the funny basic attack
 func _on_en_1_sel_pressed() -> void:
-	enOne.curHealth -= Stats.str2var(Stats.curCharacter + "Atk")
-	
+	enOne.curHealth -= Stats.get(curChara.find_key(true)+"Atk")
+	set_bar($En1/En1Tex/En1HP, enOne.curHealth, enOne.maxHealth)
+	$BasicAttack.play("En1Damaged")
+	await $BasicAttack.animation_finished 
+	var turnOff = curChara.find_key(true)
+	movedChara[turnOff] = true
+	change_turn()

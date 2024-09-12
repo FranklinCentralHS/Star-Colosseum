@@ -4,4 +4,4 @@ extends Resource
 @export var texture: Texture = null
 @export var maxHealth: int = 10
 @export var curHealth: int = 10
-@export var damage: int = 3
+@export var atk: int = 3

@@ -3,6 +3,7 @@ extends Node
 # Universal stats
 var maxEM = 100
 var curEM = 100
+var activeChara = "avi"
 
 #Avia's stats
 var maxAviHealth = 30
@@ -11,6 +12,7 @@ var maxAviIM = 30
 var curAviIM = 30
 var aviAtk = 3
 var aviDef = 2
+var aviMoved = false
 
 #Astell's stats
 var maxAstHealth = 40
@@ -19,6 +21,7 @@ var maxAstIM = 20
 var curAstIM = 20
 var astAtk = 4
 var astDef = 4
+var astMoved = false
 
 #Avia's stats
 var maxBroHealth = 60
@@ -27,6 +30,7 @@ var maxBroIM = 0
 var curBroIM = -1
 var broAtk = 5
 var broDef = 3
+var broMoved = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -36,3 +40,5 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
