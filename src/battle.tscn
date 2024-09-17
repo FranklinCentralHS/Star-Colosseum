@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://d21buvmdo131j"]
+[gd_scene load_steps=41 format=3 uid="uid://d21buvmdo131j"]
 
 [ext_resource type="Texture2D" uid="uid://dhfu860nq6gee" path="res://assets/backgrounds/battlebg.png" id="1_fn0o5"]
 [ext_resource type="Script" path="res://src/battle.gd" id="1_wypbb"]
@@ -26,6 +26,8 @@ bg_color = Color(0.454902, 0.454902, 0.454902, 0.611765)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_83sjm"]
 bg_color = Color(0.213841, 0.0790144, 0.0617745, 0.611765)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6wsrc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhe5f"]
 bg_color = Color(0.0672831, 0.128184, 0.0786211, 1)
@@ -140,10 +142,10 @@ tracks/0/path = NodePath("En1/En1Tex:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(-0.0333333),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f83ot"]
@@ -206,23 +208,6 @@ action_mode = 0
 text = "Magic"
 metadata/_edit_use_anchors_ = true
 
-[node name="Skills" type="Button" parent="Aviaunanim"]
-offset_left = 71.0
-offset_top = -18.0
-offset_right = 129.0
-offset_bottom = 13.0
-scale = Vector2(0.705626, 0.741702)
-mouse_force_pass_scroll_events = false
-theme = ExtResource("3_q3k0k")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_x2rqo")
-theme_override_styles/hover = SubResource("StyleBoxFlat_wkuu6")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_83sjm")
-theme_override_styles/normal = SubResource("StyleBoxFlat_kpmpl")
-action_mode = 0
-text = "Skills
-"
-metadata/_edit_use_anchors_ = true
-
 [node name="Items" type="Button" parent="Aviaunanim"]
 offset_left = 52.0
 offset_top = 12.0
@@ -256,6 +241,21 @@ action_mode = 0
 text = "Tactics"
 metadata/_edit_use_anchors_ = true
 
+[node name="Skills" type="MenuButton" parent="Aviaunanim"]
+offset_left = 71.0
+offset_top = -18.0
+offset_right = 129.0
+offset_bottom = 13.0
+scale = Vector2(0.706, 0.742)
+mouse_force_pass_scroll_events = false
+theme = ExtResource("3_q3k0k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6wsrc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wkuu6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_83sjm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kpmpl")
+text = "Skills"
+flat = false
+
 [node name="En1" type="VBoxContainer" parent="."]
 layout_mode = 2
 offset_left = 794.0
@@ -264,7 +264,6 @@ offset_right = 999.0
 offset_bottom = 455.0
 
 [node name="En1Tex" type="TextureRect" parent="En1"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 texture = ExtResource("3_so6n8")
 expand_mode = 4
@@ -687,6 +686,7 @@ libraries = {
 }
 
 [connection signal="pressed" from="Aviaunanim/Tactics" to="." method="_on_tactics_pressed"]
+[connection signal="pressed" from="Aviaunanim/Skills" to="." method="_on_skills_pressed"]
 [connection signal="mouse_entered" from="En1/En1Tex/En1Sel" to="." method="_on_en_1_sel_mouse_entered"]
 [connection signal="mouse_exited" from="En1/En1Tex/En1Sel" to="." method="_on_en_1_sel_mouse_exited"]
 [connection signal="pressed" from="En1/En1Tex/En1Sel" to="." method="_on_en_1_sel_pressed"]

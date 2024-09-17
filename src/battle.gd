@@ -20,6 +20,7 @@ func _ready() -> void:
 	set_bar($BroStats/BroHP, Stats.curBroHealth, Stats.maxBroHealth)
 	set_bar($BroStats/BroHP/BroIM, Stats.curBroIM, Stats.maxBroIM)
 	set_bar($EMStats/EM, Stats.curEM, Stats.maxEM)
+	menu_manager()
 
 	#Set the enemies' texture to the assigned enemies
 	$En1/En1Tex.texture = enOne.texture
@@ -61,21 +62,22 @@ func change_turn() -> void:
 		en_attack()
 		curChara["avi"] = true
 		movedChara["avi"] = false
+		menu_manager()
 		
 
 #All enemies attack
 func en_attack() -> void: 
 	var enOneTarg = rng.randi_range(1,3)
 	if enOneTarg == 1:
-		Stats.curAviHealth -= enOne.atk
+		Stats.curAviHealth -= roundi(enOne.atk/Stats.aviDef)
 		set_bar($AviStats/AviHP, Stats.curAviHealth, Stats.maxAviHealth)
 
 	elif enOneTarg == 2: 
-		Stats.curAstHealth -= enOne.atk
+		Stats.curAstHealth -= roundi(enOne.atk/Stats.astDef)
 		set_bar($AstStats/AstHP, Stats.curAstHealth, Stats.maxAstHealth)
 	
 	elif enOneTarg == 3: 
-		Stats.curBroHealth -= enOne.atk
+		Stats.curBroHealth -= roundi(enOne.atk/Stats.aviDef)
 		set_bar($BroStats/BroHP, Stats.curBroHealth, Stats.maxBroHealth)
 	
 
@@ -95,3 +97,23 @@ func _on_en_1_sel_pressed() -> void:
 	var turnOff = curChara.find_key(true)
 	movedChara[turnOff] = true
 	change_turn()
+
+
+func _on_skills_pressed(id) -> void:
+	pass # Replace with function body.
+	var skillName = $Aviaunanim/Skills.getpopup().get_item_text(id)
+	if skillName == "Defend":
+		defense_manager(curChara.find_key(true))
+
+
+func menu_manager() -> void: 
+	for i in range(Stats.get(curChara.find_key(true)+"Skills")):
+		$Aviaunanim/Skills.get_popup().add_item(Stats.get(curChara.find_key(true)+"Skills")[i])
+	$Aviaunanim/Skills.getpopup().connect("id_pressed",self,"_on_skills_pressed")
+
+func defense_manager(target): 
+	var defenseStat = Stats.get(target + "Def")
+	defenseStat = defenseStat * 2 
+	return defenseStat
+	 
+
