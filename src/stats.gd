@@ -4,6 +4,7 @@ extends Node
 var maxEM = 100
 var curEM = 100
 var activeChara = "avi"
+var defMod = 2 
 
 #Avia's stats
 var maxAviHealth = 30
@@ -13,6 +14,7 @@ var curAviIM = 30
 var aviAtk = 3
 var aviDef = 2
 var aviMoved = false
+var aviSkills = ["Defend", "Back"]
 
 #Astell's stats
 var maxAstHealth = 40

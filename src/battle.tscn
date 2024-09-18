@@ -686,7 +686,6 @@ libraries = {
 }
 
 [connection signal="pressed" from="Aviaunanim/Tactics" to="." method="_on_tactics_pressed"]
-[connection signal="pressed" from="Aviaunanim/Skills" to="." method="_on_skills_pressed"]
 [connection signal="mouse_entered" from="En1/En1Tex/En1Sel" to="." method="_on_en_1_sel_mouse_entered"]
 [connection signal="mouse_exited" from="En1/En1Tex/En1Sel" to="." method="_on_en_1_sel_mouse_exited"]
 [connection signal="pressed" from="En1/En1Tex/En1Sel" to="." method="_on_en_1_sel_pressed"]

@@ -9,6 +9,7 @@ var rng = RandomNumberGenerator.new()
 var curChara:Dictionary = {"avi":true, "ast":false, "bro":false}
 var movedChara:Dictionary = {"avi":false,"ast":true,"bro":true}
 
+var defBoosted = []
 # Called when the node enters the scene tree for the first time.]
 func _ready() -> void:
 	#Set Value Bars for all HP, IM, and EM
@@ -24,7 +25,7 @@ func _ready() -> void:
 
 	#Set the enemies' texture to the assigned enemies
 	$En1/En1Tex.texture = enOne.texture
-
+	
 	#Hide any menus that pop up later
 	$TacticsPanel.hide()
 
@@ -62,6 +63,7 @@ func change_turn() -> void:
 		en_attack()
 		curChara["avi"] = true
 		movedChara["avi"] = false
+		defense_manager("clear")
 		menu_manager()
 		
 
@@ -99,21 +101,41 @@ func _on_en_1_sel_pressed() -> void:
 	change_turn()
 
 
-func _on_skills_pressed(id) -> void:
-	pass # Replace with function body.
-	var skillName = $Aviaunanim/Skills.getpopup().get_item_text(id)
-	if skillName == "Defend":
-		defense_manager(curChara.find_key(true))
+func _on_skills_pressed(index_pressed):
+	var skillName = $Aviaunanim/Skills.get_popup().get_item_text(index_pressed)
+	if skillName != "Back": 
+		if skillName == "Defend": 
+			defense_manager(curChara.find_key(true))
+		var turnOff = curChara.find_key(true)
+		movedChara[turnOff] = true
+		change_turn()
 
 
 func menu_manager() -> void: 
-	for i in range(Stats.get(curChara.find_key(true)+"Skills")):
+	for i in range(Stats.get(curChara.find_key(true)+"Skills").size()):
 		$Aviaunanim/Skills.get_popup().add_item(Stats.get(curChara.find_key(true)+"Skills")[i])
-	$Aviaunanim/Skills.getpopup().connect("id_pressed",self,"_on_skills_pressed")
+	$Aviaunanim/Skills.get_popup().connect("id_pressed", _on_skills_pressed)
+	
 
+#Defense changing insanity
 func defense_manager(target): 
-	var defenseStat = Stats.get(target + "Def")
-	defenseStat = defenseStat * 2 
-	return defenseStat
-	 
-
+	# party = all characters
+	# enemies = all enemies
+	if target == "avi" or "party":
+		Stats.aviDef = Stats.aviDef * 2 
+		defBoosted.append("avi")
+	if target == "ast" or "party":
+		Stats.astDef = Stats.astDef * 2 
+		defBoosted.append("ast")
+	if target == "bro" or "party":
+		Stats.broDef = Stats.broDef * 2 
+		defBoosted.append("bro")
+	if target == "clear":
+		for i in range(defBoosted.size()):
+			if defBoosted[i] == "avi":
+				Stats.aviDef = Stats.aviDef / 2
+			if defBoosted[i] == "ast":
+				Stats.astDef = Stats.astDef / 2 
+			if defBoosted[i] == "bro":
+				Stats.broDef = Stats.broDef / 2
+		defBoosted.clear()
