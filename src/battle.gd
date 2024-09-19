@@ -8,6 +8,7 @@ var disableChara = " "
 var rng = RandomNumberGenerator.new()
 var curChara:Dictionary = {"avi":true, "ast":false, "bro":false}
 var movedChara:Dictionary = {"avi":false,"ast":true,"bro":true}
+var attacking = false
 
 var defBoosted = []
 # Called when the node enters the scene tree for the first time.]
@@ -64,6 +65,7 @@ func change_turn() -> void:
 		curChara["avi"] = true
 		movedChara["avi"] = false
 		defense_manager("clear")
+		clear_menus()
 		menu_manager()
 		
 
@@ -71,38 +73,42 @@ func change_turn() -> void:
 func en_attack() -> void: 
 	var enOneTarg = rng.randi_range(1,3)
 	if enOneTarg == 1:
-		Stats.curAviHealth -= roundi(enOne.atk/Stats.aviDef)
+		Stats.curAviHealth -= roundi(enOne.atk/Stats.aviDef + 1)
 		set_bar($AviStats/AviHP, Stats.curAviHealth, Stats.maxAviHealth)
 
 	elif enOneTarg == 2: 
-		Stats.curAstHealth -= roundi(enOne.atk/Stats.astDef)
+		Stats.curAstHealth -= roundi(enOne.atk/Stats.astDef + 1)
 		set_bar($AstStats/AstHP, Stats.curAstHealth, Stats.maxAstHealth)
 	
 	elif enOneTarg == 3: 
-		Stats.curBroHealth -= roundi(enOne.atk/Stats.aviDef)
+		Stats.curBroHealth -= roundi(enOne.atk/Stats.aviDef + 1)
 		set_bar($BroStats/BroHP, Stats.curBroHealth, Stats.maxBroHealth)
 	
 
 
 # Show enemy selection
 func _on_en_1_sel_mouse_entered() -> void:
-	$En1/En1Tex.material = en1SelMat
+	if attacking == true:
+		$En1/En1Tex.material = en1SelMat
 func _on_en_1_sel_mouse_exited() -> void:
-	$En1/En1Tex.material = null
+	if attacking == true:
+		$En1/En1Tex.material = null
 
 #Do the funny basic attack
 func _on_en_1_sel_pressed() -> void:
-	enOne.curHealth -= Stats.get(curChara.find_key(true)+"Atk")
-	set_bar($En1/En1Tex/En1HP, enOne.curHealth, enOne.maxHealth)
-	$BasicAttack.play("En1Damaged")
-	await $BasicAttack.animation_finished 
-	var turnOff = curChara.find_key(true)
-	movedChara[turnOff] = true
-	change_turn()
+	if attacking == true:
+		attacking = false
+		enOne.curHealth -= Stats.get(curChara.find_key(true)+"Atk")
+		set_bar($En1/En1Tex/En1HP, enOne.curHealth, enOne.maxHealth)
+		$BasicAttack.play("En1Damaged")
+		await $BasicAttack.animation_finished 
+		var turnOff = curChara.find_key(true)
+		movedChara[turnOff] = true
+		change_turn()
 
 
 func _on_skills_pressed(index_pressed):
-	var skillName = $Aviaunanim/Skills.get_popup().get_item_text(index_pressed)
+	var skillName = $ActiveCharacter/Skills.get_popup().get_item_text(index_pressed)
 	if skillName != "Back": 
 		if skillName == "Defend": 
 			defense_manager(curChara.find_key(true))
@@ -113,9 +119,13 @@ func _on_skills_pressed(index_pressed):
 
 func menu_manager() -> void: 
 	for i in range(Stats.get(curChara.find_key(true)+"Skills").size()):
-		$Aviaunanim/Skills.get_popup().add_item(Stats.get(curChara.find_key(true)+"Skills")[i])
-	$Aviaunanim/Skills.get_popup().connect("id_pressed", _on_skills_pressed)
-	
+		$ActiveCharacter/Skills.get_popup().add_item(Stats.get(curChara.find_key(true)+"Skills")[i])
+	$ActiveCharacter/Skills.get_popup().connect("id_pressed", _on_skills_pressed)
+
+func clear_menus(): 
+	$ActiveCharacter/Skills.get_popup().disconnect("id_pressed",_on_skills_pressed)
+	$ActiveCharacter/Skills.get_popup().clear()
+
 
 #Defense changing insanity
 func defense_manager(target): 
@@ -139,3 +149,12 @@ func defense_manager(target):
 			if defBoosted[i] == "bro":
 				Stats.broDef = Stats.broDef / 2
 		defBoosted.clear()
+
+func _on_attack_pressed() -> void:
+	if attacking == true: 
+		attacking = false
+		$ActiveCharacter/Attack.text = "Attack"
+		$En1/En1Tex.material = null
+	elif attacking == false: 
+		attacking = true
+		$ActiveCharacter/Attack.text = "Back"

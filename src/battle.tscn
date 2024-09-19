@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://d21buvmdo131j"]
+[gd_scene load_steps=42 format=3 uid="uid://d21buvmdo131j"]
 
 [ext_resource type="Texture2D" uid="uid://dhfu860nq6gee" path="res://assets/backgrounds/battlebg.png" id="1_fn0o5"]
 [ext_resource type="Script" path="res://src/battle.gd" id="1_wypbb"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://c3gfcbgnam72c" path="res://src/patchett.tres" id="2_wi604"]
 [ext_resource type="Theme" uid="uid://cpp0f50owjch8" path="res://themes/battleboxes.tres" id="3_q3k0k"]
 [ext_resource type="Texture2D" uid="uid://v0ot5cw2teqr" path="res://assets/enemies/patchet.png" id="3_so6n8"]
+[ext_resource type="Texture2D" uid="uid://ippwfv46awcd" path="res://assets/characters/Brookelyn/Brookelyn.png" id="7_osmsv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjcvf"]
 
@@ -173,16 +174,19 @@ offset_right = 1282.0
 offset_bottom = 720.0
 texture = ExtResource("1_fn0o5")
 
-[node name="Aviaunanim" type="Sprite2D" parent="."]
-position = Vector2(383, 343)
+[node name="ActiveCharacter" type="TextureRect" parent="."]
+offset_left = 283.0
+offset_top = 242.0
+offset_right = 383.0
+offset_bottom = 342.0
 scale = Vector2(2, 2)
 texture = ExtResource("2_brsj4")
 
-[node name="Attack" type="Button" parent="Aviaunanim"]
-offset_left = 26.0
-offset_top = -74.0
-offset_right = 84.0
-offset_bottom = -43.0
+[node name="Attack" type="Button" parent="ActiveCharacter"]
+offset_left = 76.0
+offset_top = -23.5
+offset_right = 134.0
+offset_bottom = 7.5
 scale = Vector2(0.705626, 0.741702)
 theme = ExtResource("3_q3k0k")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vjcvf")
@@ -190,13 +194,12 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_wkuu6")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_g43c7")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kpmpl")
 text = "Attack"
-metadata/_edit_use_anchors_ = true
 
-[node name="Magic" type="Button" parent="Aviaunanim"]
-offset_left = 53.5
-offset_top = -46.0
-offset_right = 111.5
-offset_bottom = -15.0
+[node name="Magic" type="Button" parent="ActiveCharacter"]
+offset_left = 103.5
+offset_top = 4.5
+offset_right = 161.5
+offset_bottom = 35.5
 scale = Vector2(0.705626, 0.741702)
 mouse_force_pass_scroll_events = false
 theme = ExtResource("3_q3k0k")
@@ -206,13 +209,12 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_83sjm")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kpmpl")
 action_mode = 0
 text = "Magic"
-metadata/_edit_use_anchors_ = true
 
-[node name="Items" type="Button" parent="Aviaunanim"]
-offset_left = 52.0
-offset_top = 12.0
-offset_right = 110.0
-offset_bottom = 43.0
+[node name="Items" type="Button" parent="ActiveCharacter"]
+offset_left = 102.0
+offset_top = 62.5
+offset_right = 160.0
+offset_bottom = 93.5
 scale = Vector2(0.705626, 0.741702)
 mouse_force_pass_scroll_events = false
 theme = ExtResource("3_q3k0k")
@@ -223,13 +225,12 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_kpmpl")
 action_mode = 0
 text = "Items
 "
-metadata/_edit_use_anchors_ = true
 
-[node name="Tactics" type="Button" parent="Aviaunanim"]
-offset_left = 29.0
-offset_top = 40.0
-offset_right = 87.0
-offset_bottom = 71.0
+[node name="Tactics" type="Button" parent="ActiveCharacter"]
+offset_left = 79.0
+offset_top = 90.5
+offset_right = 137.0
+offset_bottom = 121.5
 scale = Vector2(0.705626, 0.741702)
 mouse_force_pass_scroll_events = false
 theme = ExtResource("3_q3k0k")
@@ -239,13 +240,12 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_83sjm")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kpmpl")
 action_mode = 0
 text = "Tactics"
-metadata/_edit_use_anchors_ = true
 
-[node name="Skills" type="MenuButton" parent="Aviaunanim"]
-offset_left = 71.0
-offset_top = -18.0
-offset_right = 129.0
-offset_bottom = 13.0
+[node name="Skills" type="MenuButton" parent="ActiveCharacter"]
+offset_left = 121.0
+offset_top = 32.5
+offset_right = 179.0
+offset_bottom = 63.5
 scale = Vector2(0.706, 0.742)
 mouse_force_pass_scroll_events = false
 theme = ExtResource("3_q3k0k")
@@ -685,7 +685,16 @@ libraries = {
 "": SubResource("AnimationLibrary_f83ot")
 }
 
-[connection signal="pressed" from="Aviaunanim/Tactics" to="." method="_on_tactics_pressed"]
+[node name="BackupCharacter1" type="TextureRect" parent="."]
+offset_left = 34.0
+offset_top = 320.0
+offset_right = 134.0
+offset_bottom = 420.0
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("7_osmsv")
+
+[connection signal="pressed" from="ActiveCharacter/Attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="ActiveCharacter/Tactics" to="." method="_on_tactics_pressed"]
 [connection signal="mouse_entered" from="En1/En1Tex/En1Sel" to="." method="_on_en_1_sel_mouse_entered"]
 [connection signal="mouse_exited" from="En1/En1Tex/En1Sel" to="." method="_on_en_1_sel_mouse_exited"]
 [connection signal="pressed" from="En1/En1Tex/En1Sel" to="." method="_on_en_1_sel_pressed"]
