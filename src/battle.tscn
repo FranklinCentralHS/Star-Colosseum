@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://d21buvmdo131j"]
+[gd_scene load_steps=43 format=3 uid="uid://d21buvmdo131j"]
 
 [ext_resource type="Texture2D" uid="uid://dhfu860nq6gee" path="res://assets/backgrounds/battlebg.png" id="1_fn0o5"]
 [ext_resource type="Script" path="res://src/battle.gd" id="1_wypbb"]
@@ -7,6 +7,7 @@
 [ext_resource type="Theme" uid="uid://cpp0f50owjch8" path="res://themes/battleboxes.tres" id="3_q3k0k"]
 [ext_resource type="Texture2D" uid="uid://v0ot5cw2teqr" path="res://assets/enemies/patchet.png" id="3_so6n8"]
 [ext_resource type="Texture2D" uid="uid://ippwfv46awcd" path="res://assets/characters/Brookelyn/Brookelyn.png" id="7_osmsv"]
+[ext_resource type="Texture2D" uid="uid://b2jekrp5wf1rw" path="res://assets/characters/astell/astell.png" id="7_ttg76"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjcvf"]
 
@@ -175,6 +176,7 @@ offset_bottom = 720.0
 texture = ExtResource("1_fn0o5")
 
 [node name="ActiveCharacter" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 283.0
 offset_top = 242.0
 offset_right = 383.0
@@ -183,6 +185,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_brsj4")
 
 [node name="Attack" type="Button" parent="ActiveCharacter"]
+layout_mode = 0
 offset_left = 76.0
 offset_top = -23.5
 offset_right = 134.0
@@ -196,6 +199,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_kpmpl")
 text = "Attack"
 
 [node name="Magic" type="Button" parent="ActiveCharacter"]
+layout_mode = 0
 offset_left = 103.5
 offset_top = 4.5
 offset_right = 161.5
@@ -211,6 +215,7 @@ action_mode = 0
 text = "Magic"
 
 [node name="Items" type="Button" parent="ActiveCharacter"]
+layout_mode = 0
 offset_left = 102.0
 offset_top = 62.5
 offset_right = 160.0
@@ -227,6 +232,7 @@ text = "Items
 "
 
 [node name="Tactics" type="Button" parent="ActiveCharacter"]
+layout_mode = 0
 offset_left = 79.0
 offset_top = 90.5
 offset_right = 137.0
@@ -242,6 +248,7 @@ action_mode = 0
 text = "Tactics"
 
 [node name="Skills" type="MenuButton" parent="ActiveCharacter"]
+layout_mode = 0
 offset_left = 121.0
 offset_top = 32.5
 offset_right = 179.0
@@ -685,12 +692,22 @@ libraries = {
 "": SubResource("AnimationLibrary_f83ot")
 }
 
+[node name="BackupCharacter2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 56.0
+offset_right = 161.0
+offset_bottom = 182.0
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("7_ttg76")
+
 [node name="BackupCharacter1" type="TextureRect" parent="."]
-offset_left = 34.0
-offset_top = 320.0
-offset_right = 134.0
-offset_bottom = 420.0
-scale = Vector2(2.5, 2.5)
+layout_mode = 0
+offset_left = 39.0
+offset_top = 324.0
+offset_right = 139.0
+offset_bottom = 424.0
+scale = Vector2(2.35, 2.35)
 texture = ExtResource("7_osmsv")
 
 [connection signal="pressed" from="ActiveCharacter/Attack" to="." method="_on_attack_pressed"]
