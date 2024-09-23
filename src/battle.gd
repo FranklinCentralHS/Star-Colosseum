@@ -9,6 +9,7 @@ var rng = RandomNumberGenerator.new()
 var curChara:Dictionary = {"avi":true, "ast":false, "bro":false}
 var movedChara:Dictionary = {"avi":false,"ast":true,"bro":true}
 var attacking = false
+var charaSpots:Dictionary = {"avi":"ActiveChara", "ast": "BackChara2", "bro": "BackChara1"}
 
 var defBoosted = []
 # Called when the node enters the scene tree for the first time.]
@@ -26,26 +27,16 @@ func _ready() -> void:
 
 	#Set the enemies' texture to the assigned enemies
 	$En1/En1Tex.texture = enOne.texture
-	
-	#Hide any menus that pop up later
-	$TacticsPanel.hide()
 
+	#Set up the Tactics Menu which is universally the same
+	$ActiveCharacter/Tactics.get_popup().connect("id_pressed", _on_tactics_pressed)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 #Go to main menu when running
-func _on_run_pressed() -> void:
-	get_tree().change_scene_to_file("res://src/mainmenu.tscn")
-
-#Show the tactics menu when the tactics button is pressed
-func _on_tactics_pressed() -> void:
-	$TacticsPanel.show()
-
-#Hide menus when the back button is pressed
-func _on_back_pressed() -> void:
-	$TacticsPanel.hide()
 
 #Set Value Bars
 func set_bar(progressBar,curValue,maxValue) -> void:
@@ -71,18 +62,27 @@ func change_turn() -> void:
 
 #All enemies attack
 func en_attack() -> void: 
+	options_vis_manager("none")
 	var enOneTarg = rng.randi_range(1,3)
 	if enOneTarg == 1:
+		$BasicAttack.play(charaSpots["avi"]+"Damaged")
+		await $BasicAttack.animation_finished 
 		Stats.curAviHealth -= roundi(enOne.atk/Stats.aviDef + 1)
 		set_bar($AviStats/AviHP, Stats.curAviHealth, Stats.maxAviHealth)
 
 	elif enOneTarg == 2: 
+		$BasicAttack.play(charaSpots["ast"]+"Damaged")
+		await $BasicAttack.animation_finished 
 		Stats.curAstHealth -= roundi(enOne.atk/Stats.astDef + 1)
 		set_bar($AstStats/AstHP, Stats.curAstHealth, Stats.maxAstHealth)
 	
 	elif enOneTarg == 3: 
+		$BasicAttack.play(charaSpots["bro"]+"Damaged")
+		await $BasicAttack.animation_finished 
 		Stats.curBroHealth -= roundi(enOne.atk/Stats.aviDef + 1)
 		set_bar($BroStats/BroHP, Stats.curBroHealth, Stats.maxBroHealth)
+
+	options_vis_manager("reset")
 	
 
 
@@ -100,12 +100,18 @@ func _on_en_1_sel_pressed() -> void:
 		attacking = false
 		enOne.curHealth -= Stats.get(curChara.find_key(true)+"Atk")
 		set_bar($En1/En1Tex/En1HP, enOne.curHealth, enOne.maxHealth)
+		options_vis_manager("none")
 		$BasicAttack.play("En1Damaged")
 		await $BasicAttack.animation_finished 
+		#Reset Attack Button 
+		$ActiveCharacter/Attack.text = "Attack"
+		$En1/En1Tex.material = null
+		#Turn the current character's turn off
 		var turnOff = curChara.find_key(true)
 		movedChara[turnOff] = true
 		change_turn()
 
+#The following few functions relate to logic within all option buttons excluding Attacking
 
 func _on_skills_pressed(index_pressed):
 	var skillName = $ActiveCharacter/Skills.get_popup().get_item_text(index_pressed)
@@ -116,7 +122,15 @@ func _on_skills_pressed(index_pressed):
 		movedChara[turnOff] = true
 		change_turn()
 
+func _on_tactics_pressed(index_pressed):
+	var tactic = $ActiveCharacter/Tactics.get_popup().get_item_text(index_pressed)
+	if tactic != "Back":
+		if tactic == "Run":
+			get_tree().change_scene_to_file("res://src/mainmenu.tscn")
 
+
+
+#Set menus and link them to functions (except for attack which has none and tactics which was established at the beginning of the code)
 func menu_manager() -> void: 
 	for i in range(Stats.get(curChara.find_key(true)+"Skills").size()):
 		$ActiveCharacter/Skills.get_popup().add_item(Stats.get(curChara.find_key(true)+"Skills")[i])
@@ -155,6 +169,30 @@ func _on_attack_pressed() -> void:
 		attacking = false
 		$ActiveCharacter/Attack.text = "Attack"
 		$En1/En1Tex.material = null
+		options_vis_manager("reset")
 	elif attacking == false: 
 		attacking = true
 		$ActiveCharacter/Attack.text = "Back"
+		options_vis_manager("attack")
+
+#Hide menu buttons
+func options_vis_manager(activeButton):
+	if activeButton == "attack":
+		$ActiveCharacter/Magic.hide()
+		$ActiveCharacter/Items.hide()
+		$ActiveCharacter/Tactics.hide()
+		$ActiveCharacter/Skills.hide()
+	if activeButton == "reset":
+		$ActiveCharacter/Attack.show()
+		$ActiveCharacter/Magic.show()
+		$ActiveCharacter/Items.show()
+		$ActiveCharacter/Tactics.show()
+		$ActiveCharacter/Skills.show()
+	if activeButton== "none":
+		$ActiveCharacter/Attack.hide()
+		$ActiveCharacter/Magic.hide()
+		$ActiveCharacter/Items.hide()
+		$ActiveCharacter/Tactics.hide()
+		$ActiveCharacter/Skills.hide()
+
+
