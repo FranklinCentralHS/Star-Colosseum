@@ -1,11 +1,12 @@
-[gd_scene load_steps=46 format=3 uid="uid://d21buvmdo131j"]
+[gd_scene load_steps=47 format=3 uid="uid://d21buvmdo131j"]
 
 [ext_resource type="Texture2D" uid="uid://dhfu860nq6gee" path="res://assets/backgrounds/battlebg.png" id="1_fn0o5"]
 [ext_resource type="Script" path="res://src/battle.gd" id="1_wypbb"]
 [ext_resource type="Texture2D" uid="uid://bl6hl4knwc0gn" path="res://assets/characters/avia/Aviaunanim.png" id="2_brsj4"]
-[ext_resource type="Resource" uid="uid://c3gfcbgnam72c" path="res://src/patchett.tres" id="2_wi604"]
+[ext_resource type="Resource" uid="uid://c3gfcbgnam72c" path="res://src/enemydata/patchett.tres" id="2_wi604"]
 [ext_resource type="Theme" uid="uid://cpp0f50owjch8" path="res://themes/battleboxes.tres" id="3_q3k0k"]
 [ext_resource type="Texture2D" uid="uid://v0ot5cw2teqr" path="res://assets/enemies/patchet.png" id="3_so6n8"]
+[ext_resource type="Resource" uid="uid://cb8mymk4lplcx" path="res://src/enemydata/stalagfite.tres" id="3_tili2"]
 [ext_resource type="Texture2D" uid="uid://ippwfv46awcd" path="res://assets/characters/Brookelyn/Brookelyn.png" id="7_osmsv"]
 [ext_resource type="Texture2D" uid="uid://b2jekrp5wf1rw" path="res://assets/characters/astell/astell.png" id="7_ttg76"]
 
@@ -120,48 +121,6 @@ bg_color = Color(0.172549, 0.266667, 0.188235, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05cdq"]
 bg_color = Color(0.376471, 0.282353, 0.576471, 0.654902)
 
-[sub_resource type="Animation" id="Animation_1mu8e"]
-resource_name = "En1Damaged"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("En1/En1Tex:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_82v7h"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("En1/En1Tex:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(-0.0333333),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ActiveCharacter:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_42d04"]
 resource_name = "ActiveCharaDamaged"
 tracks/0/type = "value"
@@ -207,6 +166,48 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_1mu8e"]
+resource_name = "En1Damaged"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("En1/En1Tex:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_82v7h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("En1/En1Tex:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ActiveCharacter:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f83ot"]
 _data = {
 "ActiveCharaDamaged": SubResource("Animation_42d04"),
@@ -227,6 +228,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wypbb")
 enOne = ExtResource("2_wi604")
+enTwo = ExtResource("3_tili2")
+enThree = ExtResource("2_wi604")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
@@ -329,11 +332,103 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_kpmpl")
 text = "Skills"
 flat = false
 
+[node name="En3" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 978.0
+offset_top = 125.0
+offset_right = 1183.0
+offset_bottom = 330.0
+
+[node name="En3Tex" type="TextureRect" parent="En3"]
+layout_mode = 2
+texture = ExtResource("3_so6n8")
+expand_mode = 4
+
+[node name="En3HP" type="ProgressBar" parent="En3/En3Tex"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -85.5
+offset_top = 7.0
+offset_right = 60.5
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bhe5f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_galor")
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="En3Sel" type="Button" parent="En3/En3Tex"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 57.0
+offset_right = 147.0
+offset_bottom = 162.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iffub")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_do57g")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_5x1fv")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_wqg5c")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_e04rd")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_wira5")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_lxval")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_1tq23")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_16j72")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_x1pgl")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3sgh1")
+
+[node name="En2" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 981.0
+offset_top = 346.0
+offset_right = 1186.0
+offset_bottom = 551.0
+
+[node name="En2Tex" type="TextureRect" parent="En2"]
+layout_mode = 2
+texture = ExtResource("3_so6n8")
+expand_mode = 4
+
+[node name="En2HP" type="ProgressBar" parent="En2/En2Tex"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -85.5
+offset_top = 7.0
+offset_right = 60.5
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bhe5f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_galor")
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="En2Sel" type="Button" parent="En2/En2Tex"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 57.0
+offset_right = 147.0
+offset_bottom = 162.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iffub")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_do57g")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_5x1fv")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_wqg5c")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_e04rd")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_wira5")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_lxval")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_1tq23")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_16j72")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_x1pgl")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3sgh1")
+
 [node name="En1" type="VBoxContainer" parent="."]
 layout_mode = 2
-offset_left = 794.0
+offset_left = 783.0
 offset_top = 250.0
-offset_right = 999.0
+offset_right = 988.0
 offset_bottom = 455.0
 
 [node name="En1Tex" type="TextureRect" parent="En1"]

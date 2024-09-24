@@ -2,6 +2,8 @@ extends Control
 
 #Export variables for enemy slots
 @export var enOne: Resource = null
+@export var enTwo: Resource = null
+@export var enThree: Resource = null
 
 var en1SelMat = preload("res://materialshader/en1.tres")
 var disableChara = " "
@@ -27,6 +29,8 @@ func _ready() -> void:
 
 	#Set the enemies' texture to the assigned enemies
 	$En1/En1Tex.texture = enOne.texture
+	$En2/En2Tex.texture = enTwo.texture
+	$En3/En3Tex.texture = enThree.texture
 
 	#Set up the Tactics Menu which is universally the same
 	$ActiveCharacter/Tactics.get_popup().connect("id_pressed", _on_tactics_pressed)
@@ -194,5 +198,3 @@ func options_vis_manager(activeButton):
 		$ActiveCharacter/Items.hide()
 		$ActiveCharacter/Tactics.hide()
 		$ActiveCharacter/Skills.hide()
-
-

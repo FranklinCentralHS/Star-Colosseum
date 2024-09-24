@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cb8mymk4lplcx"]
+
+[ext_resource type="Script" path="res://src/enemyA1.gd" id="1_43eku"]
+[ext_resource type="Texture2D" uid="uid://rvg77c6s4gec" path="res://assets/enemies/Stalagfite.png" id="2_r52qn"]
+
+[resource]
+script = ExtResource("1_43eku")
+name = "Stalagfite"
+texture = ExtResource("2_r52qn")
+maxHealth = 15
+curHealth = 15
+atk = 2

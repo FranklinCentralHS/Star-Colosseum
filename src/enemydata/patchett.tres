@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_o4j7m")
-name = "Enemy"
+name = "Patchett"
 texture = ExtResource("2_vxx17")
 maxHealth = 10
 curHealth = 10
