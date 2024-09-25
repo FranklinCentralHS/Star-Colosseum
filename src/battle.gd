@@ -5,7 +5,7 @@ extends Control
 @export var enTwo: Resource = null
 @export var enThree: Resource = null
 
-var en1SelMat = preload("res://materialshader/en1.tres")
+var enSelMat = preload("res://materialshader/en1.tres")
 var disableChara = " "
 var rng = RandomNumberGenerator.new()
 var curChara:Dictionary = {"avi":true, "ast":false, "bro":false}
@@ -18,6 +18,8 @@ var defBoosted = []
 func _ready() -> void:
 	#Set Value Bars for all HP, IM, and EM
 	set_bar($En1/En1Tex/En1HP, enOne.curHealth, enOne.maxHealth)
+	set_bar($En2/En2Tex/En2HP, enTwo.curHealth, enTwo.maxHealth)
+	set_bar($En3/En3Tex/En3HP, enThree.curHealth, enThree.maxHealth)
 	set_bar($AviStats/AviHP, Stats.curAviHealth, Stats.maxAviHealth)
 	set_bar($AviStats/AviHP/AviIM, Stats.curAviIM, Stats.maxAviIM)
 	set_bar($AstStats/AstHP/AstIM, Stats.curAstIM, Stats.maxAstIM)
@@ -34,11 +36,12 @@ func _ready() -> void:
 
 	#Set up the Tactics Menu which is universally the same
 	$ActiveCharacter/Tactics.get_popup().connect("id_pressed", _on_tactics_pressed)
+
 	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+# Called every frame. 'delta' is the elapsed time since the previous frame. (unused)
+#func _process(delta: float) -> void:
+#	pass
 
 #Go to main menu when running
 
@@ -67,55 +70,99 @@ func change_turn() -> void:
 #All enemies attack
 func en_attack() -> void: 
 	options_vis_manager("none")
-	var enOneTarg = rng.randi_range(1,3)
-	if enOneTarg == 1:
-		$BasicAttack.play(charaSpots["avi"]+"Damaged")
-		await $BasicAttack.animation_finished 
-		Stats.curAviHealth -= roundi(enOne.atk/Stats.aviDef + 1)
-		set_bar($AviStats/AviHP, Stats.curAviHealth, Stats.maxAviHealth)
+	for i in range(3):
+		var enTarg = rng.randi_range(1,3)
+		var curEn = null
+		if i == 0:
+			curEn = enOne
+		if i == 1:
+			curEn = enTwo
+		if i == 2:
+			curEn = enThree
 
-	elif enOneTarg == 2: 
-		$BasicAttack.play(charaSpots["ast"]+"Damaged")
-		await $BasicAttack.animation_finished 
-		Stats.curAstHealth -= roundi(enOne.atk/Stats.astDef + 1)
-		set_bar($AstStats/AstHP, Stats.curAstHealth, Stats.maxAstHealth)
-	
-	elif enOneTarg == 3: 
-		$BasicAttack.play(charaSpots["bro"]+"Damaged")
-		await $BasicAttack.animation_finished 
-		Stats.curBroHealth -= roundi(enOne.atk/Stats.aviDef + 1)
-		set_bar($BroStats/BroHP, Stats.curBroHealth, Stats.maxBroHealth)
+		if enTarg == 1:
+			$BasicAttack.play(charaSpots["avi"]+"Damaged")
+			await $BasicAttack.animation_finished 
+			Stats.curAviHealth -= roundi(curEn.atk/Stats.aviDef + 1)
+			set_bar($AviStats/AviHP, Stats.curAviHealth, Stats.maxAviHealth)
+
+		elif enTarg == 2: 
+			$BasicAttack.play(charaSpots["ast"]+"Damaged")
+			await $BasicAttack.animation_finished 
+			Stats.curAstHealth -= roundi(curEn.atk/Stats.astDef + 1)
+			set_bar($AstStats/AstHP, Stats.curAstHealth, Stats.maxAstHealth)
+		
+		elif enTarg == 3: 
+			$BasicAttack.play(charaSpots["bro"]+"Damaged")
+			await $BasicAttack.animation_finished 
+			Stats.curBroHealth -= roundi(curEn.atk/Stats.broDef + 1)
+			set_bar($BroStats/BroHP, Stats.curBroHealth, Stats.maxBroHealth)
 
 	options_vis_manager("reset")
 	
 
 
-# Show enemy selection
+# Show enemy selections
 func _on_en_1_sel_mouse_entered() -> void:
 	if attacking == true:
-		$En1/En1Tex.material = en1SelMat
+		$En1/En1Tex.material = enSelMat
 func _on_en_1_sel_mouse_exited() -> void:
 	if attacking == true:
 		$En1/En1Tex.material = null
 
+func _on_en_2_sel_mouse_entered() -> void:
+	if attacking == true: 
+		$En2/En2Tex.material = enSelMat
+
+func _on_en_2_sel_mouse_exited() -> void:
+	if attacking == true: 
+		$En2/En2Tex.material = null
+
+func _on_en_3_sel_mouse_entered() -> void:
+	if attacking == true: 
+		$En3/En3Tex.material = enSelMat
+
+func _on_en_3_sel_mouse_exited() -> void:
+	if attacking == true: 
+		$En3/En3Tex.material = null
+
+
 #Do the funny basic attack
 func _on_en_1_sel_pressed() -> void:
+	basic_attack($En1/En1Tex/En1HP,enOne,1)
+
+func _on_en_2_sel_pressed() -> void:
+	basic_attack($En2/En2Tex/En2HP,enTwo,2)
+
+func _on_en_3_sel_pressed() -> void:
+	basic_attack($En3/En3Tex/En3HP,enThree,3)
+
+#basic attack logic
+func basic_attack(enBar,curEn, curNum):
 	if attacking == true:
 		attacking = false
-		enOne.curHealth -= Stats.get(curChara.find_key(true)+"Atk")
-		set_bar($En1/En1Tex/En1HP, enOne.curHealth, enOne.maxHealth)
+		curEn.curHealth -= roundi(Stats.get(curChara.find_key(true)+"Atk")/curEn.def + 1)
+		set_bar(enBar, curEn.curHealth, curEn.maxHealth)
 		options_vis_manager("none")
-		$BasicAttack.play("En1Damaged")
+		$BasicAttack.play("En"+str(curNum)+"Damaged")
 		await $BasicAttack.animation_finished 
-		#Reset Attack Button 
+		#Reset Attack Button and select outlines
 		$ActiveCharacter/Attack.text = "Attack"
 		$En1/En1Tex.material = null
+		$En2/En2Tex.material = null
+		$En3/En3Tex.material = null
 		#Turn the current character's turn off
 		var turnOff = curChara.find_key(true)
 		movedChara[turnOff] = true
 		change_turn()
 
+
 #The following few functions relate to logic within all option buttons excluding Attacking
+
+func _on_magic_pressed(index_pressed):
+	var spellName = $ActiveCharacter/Magic.get_popup().get_item_text(index_pressed)
+	if spellName != "Back":
+		pass
 
 func _on_skills_pressed(index_pressed):
 	var skillName = $ActiveCharacter/Skills.get_popup().get_item_text(index_pressed)
@@ -126,22 +173,35 @@ func _on_skills_pressed(index_pressed):
 		movedChara[turnOff] = true
 		change_turn()
 
+func _on_items_pressed(index_pressed):
+	var itemName = $ActiveCharacter/Items.get_popup().get_item_text(index_pressed)
+	if itemName != "Back":
+		pass
+
 func _on_tactics_pressed(index_pressed):
-	var tactic = $ActiveCharacter/Tactics.get_popup().get_item_text(index_pressed)
-	if tactic != "Back":
-		if tactic == "Run":
+	var tacticName = $ActiveCharacter/Tactics.get_popup().get_item_text(index_pressed)
+	if tacticName != "Back":
+		if tacticName == "Run":
 			get_tree().change_scene_to_file("res://src/mainmenu.tscn")
 
 
 
-#Set menus and link them to functions (except for attack which has none and tactics which was established at the beginning of the code)
+#Set menus and link them to functions (attack and tactics excluded; magic and items aren't implemented at this time)
 func menu_manager() -> void: 
 	for i in range(Stats.get(curChara.find_key(true)+"Skills").size()):
 		$ActiveCharacter/Skills.get_popup().add_item(Stats.get(curChara.find_key(true)+"Skills")[i])
+	$ActiveCharacter/Magic.get_popup().add_item("Back")
+	$ActiveCharacter/Items.get_popup().add_item("Back")
 	$ActiveCharacter/Skills.get_popup().connect("id_pressed", _on_skills_pressed)
+	$ActiveCharacter/Magic.get_popup().connect("id_pressed", _on_magic_pressed)
+	$ActiveCharacter/Items.get_popup().connect("id_pressed", _on_items_pressed)
 
 func clear_menus(): 
+	$ActiveCharacter/Skills.get_popup().disconnect("id_pressed", _on_skills_pressed)
+	$ActiveCharacter/Magic.get_popup().disconnect("id_pressed", _on_magic_pressed)
 	$ActiveCharacter/Skills.get_popup().disconnect("id_pressed",_on_skills_pressed)
+	$ActiveCharacter/Skills.get_popup().clear()
+	$ActiveCharacter/Magic.get_popup().clear()
 	$ActiveCharacter/Skills.get_popup().clear()
 
 
@@ -198,3 +258,6 @@ func options_vis_manager(activeButton):
 		$ActiveCharacter/Items.hide()
 		$ActiveCharacter/Tactics.hide()
 		$ActiveCharacter/Skills.hide()
+
+
+

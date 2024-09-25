@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://d3mgfb2afpw0j"]
+
+[ext_resource type="Script" path="res://src/enemyA1.gd" id="1_4jket"]
+[ext_resource type="Texture2D" uid="uid://bb7dm5pa43j70" path="res://assets/enemies/grybus.png" id="2_f172k"]
+
+[resource]
+script = ExtResource("1_4jket")
+name = "Grybus"
+texture = ExtResource("2_f172k")
+maxHealth = 7
+curHealth = 7
+atk = 5
+def = 1
+expMult = 0.5
+gemMult = 1.0

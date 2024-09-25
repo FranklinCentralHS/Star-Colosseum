@@ -10,3 +10,6 @@ texture = ExtResource("2_r52qn")
 maxHealth = 15
 curHealth = 15
 atk = 2
+def = 3
+expMult = 0.5
+gemMult = 1.2
