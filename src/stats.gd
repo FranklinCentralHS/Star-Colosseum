@@ -5,6 +5,7 @@ var maxEM = 100
 var curEM = 100
 var activeChara = "avi"
 var defMod = 2 
+var spawnsA1 = ["res://src/enemydata/grybus.tres","res://src/enemydata/patchett.tres","res://src/enemydata/stalagfite.tres"]
 
 #Avia's stats
 var maxAviHealth = 30

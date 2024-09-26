@@ -1,21 +1,23 @@
 extends Control
 
+var rng = RandomNumberGenerator.new()
 #Export variables for enemy slots
-@export var enOne: Resource = null
-@export var enTwo: Resource = null
-@export var enThree: Resource = null
+@export var enOne: Resource = roll_enemies(Stats.spawnsA1)
+@export var enTwo: Resource = roll_enemies(Stats.spawnsA1)
+@export var enThree: Resource = roll_enemies(Stats.spawnsA1)
 
+#various variables
 var enSelMat = preload("res://materialshader/en1.tres")
 var disableChara = " "
-var rng = RandomNumberGenerator.new()
 var curChara:Dictionary = {"avi":true, "ast":false, "bro":false}
 var movedChara:Dictionary = {"avi":false,"ast":true,"bro":true}
 var attacking = false
 var charaSpots:Dictionary = {"avi":"ActiveChara", "ast": "BackChara2", "bro": "BackChara1"}
-
 var defBoosted = []
+var downChara = []
 # Called when the node enters the scene tree for the first time.]
 func _ready() -> void:
+	
 	#Set Value Bars for all HP, IM, and EM
 	set_bar($En1/En1Tex/En1HP, enOne.curHealth, enOne.maxHealth)
 	set_bar($En2/En2Tex/En2HP, enTwo.curHealth, enTwo.maxHealth)
@@ -85,18 +87,21 @@ func en_attack() -> void:
 			await $BasicAttack.animation_finished 
 			Stats.curAviHealth -= roundi(curEn.atk/Stats.aviDef + 1)
 			set_bar($AviStats/AviHP, Stats.curAviHealth, Stats.maxAviHealth)
+			checkHealth("avi",Stats.curAviHealth)
 
 		elif enTarg == 2: 
 			$BasicAttack.play(charaSpots["ast"]+"Damaged")
 			await $BasicAttack.animation_finished 
 			Stats.curAstHealth -= roundi(curEn.atk/Stats.astDef + 1)
 			set_bar($AstStats/AstHP, Stats.curAstHealth, Stats.maxAstHealth)
-		
+			checkHealth("ast",Stats.curAstHealth)
+
 		elif enTarg == 3: 
 			$BasicAttack.play(charaSpots["bro"]+"Damaged")
 			await $BasicAttack.animation_finished 
 			Stats.curBroHealth -= roundi(curEn.atk/Stats.broDef + 1)
 			set_bar($BroStats/BroHP, Stats.curBroHealth, Stats.maxBroHealth)
+			checkHealth("bro",Stats.curBroHealth)
 
 	options_vis_manager("reset")
 	
@@ -260,4 +265,16 @@ func options_vis_manager(activeButton):
 		$ActiveCharacter/Skills.hide()
 
 
+
+func roll_enemies(spawnTable):
+	var chosenEn = spawnTable[randi() % spawnTable.size()]
+	return load(chosenEn)
+
+func checkHealth(target, targetHealth):
+	if targetHealth <= 0: 
+		targetHealth = 0 
+		if target == "avi" or "ast" or "bro":
+			downChara.add(target)
+		else:
+			target.queue_free()
 
