@@ -15,6 +15,7 @@ var attacking = false
 var charaSpots:Dictionary = {"avi":"ActiveChara", "ast": "BackChara2", "bro": "BackChara1"}
 var defBoosted = []
 var downChara = []
+var slainEn = []
 # Called when the node enters the scene tree for the first time.]
 func _ready() -> void:
 	
@@ -76,11 +77,14 @@ func en_attack() -> void:
 		var enTarg = rng.randi_range(1,3)
 		var curEn = null
 		if i == 0:
-			curEn = enOne
+			if slainEn.has(enOne) == false:
+				curEn = enOne
 		if i == 1:
-			curEn = enTwo
+			if slainEn.has(enTwo) == false:
+				curEn = enTwo
 		if i == 2:
-			curEn = enThree
+			if slainEn.has(enThree) == false:
+				curEn = enThree
 
 		if enTarg == 1:
 			$BasicAttack.play(charaSpots["avi"]+"Damaged")
@@ -276,5 +280,8 @@ func checkHealth(target, targetHealth):
 		if target == "avi" or "ast" or "bro":
 			downChara.add(target)
 		else:
+			slainEn.add(target)
+			Stats.gems += int(randi_range(1,3)*target.gemMult)
 			target.queue_free()
-
+			if slainEn.size >= 3:
+				get_tree().reload_scene()
