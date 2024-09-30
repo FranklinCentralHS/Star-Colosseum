@@ -13,6 +13,7 @@ var curChara:Dictionary = {"avi":true, "ast":false, "bro":false}
 var movedChara:Dictionary = {"avi":false,"ast":true,"bro":true}
 var attacking = false
 var charaSpots:Dictionary = {"avi":"ActiveChara", "ast": "BackChara2", "bro": "BackChara1"}
+
 var defBoosted = []
 var downChara = []
 var slainEn = []
@@ -20,6 +21,7 @@ var slainEn = []
 func _ready() -> void:
 	
 	#Set Value Bars for all HP, IM, and EM
+	var enSpots:Dictionary = {enOne:$En1, enTwo:$En2, enThree:$En3}
 	set_bar($En1/En1Tex/En1HP, enOne.curHealth, enOne.maxHealth)
 	set_bar($En2/En2Tex/En2HP, enTwo.curHealth, enTwo.maxHealth)
 	set_bar($En3/En3Tex/En3HP, enThree.curHealth, enThree.maxHealth)
@@ -86,26 +88,27 @@ func en_attack() -> void:
 			if slainEn.has(enThree) == false:
 				curEn = enThree
 
-		if enTarg == 1:
-			$BasicAttack.play(charaSpots["avi"]+"Damaged")
-			await $BasicAttack.animation_finished 
-			Stats.curAviHealth -= roundi(curEn.atk/Stats.aviDef + 1)
-			set_bar($AviStats/AviHP, Stats.curAviHealth, Stats.maxAviHealth)
-			checkHealth("avi",Stats.curAviHealth)
+		if curEn != null:
+			if enTarg == 1:
+				$BasicAttack.play(charaSpots["avi"]+"Damaged")
+				await $BasicAttack.animation_finished 
+				Stats.curAviHealth -= roundi(curEn.atk/Stats.aviDef + 1)
+				set_bar($AviStats/AviHP, Stats.curAviHealth, Stats.maxAviHealth)
+				checkHealth("avi",Stats.curAviHealth)
 
-		elif enTarg == 2: 
-			$BasicAttack.play(charaSpots["ast"]+"Damaged")
-			await $BasicAttack.animation_finished 
-			Stats.curAstHealth -= roundi(curEn.atk/Stats.astDef + 1)
-			set_bar($AstStats/AstHP, Stats.curAstHealth, Stats.maxAstHealth)
-			checkHealth("ast",Stats.curAstHealth)
+			elif enTarg == 2: 
+				$BasicAttack.play(charaSpots["ast"]+"Damaged")
+				await $BasicAttack.animation_finished 
+				Stats.curAstHealth -= roundi(curEn.atk/Stats.astDef + 1)
+				set_bar($AstStats/AstHP, Stats.curAstHealth, Stats.maxAstHealth)
+				checkHealth("ast",Stats.curAstHealth)
 
-		elif enTarg == 3: 
-			$BasicAttack.play(charaSpots["bro"]+"Damaged")
-			await $BasicAttack.animation_finished 
-			Stats.curBroHealth -= roundi(curEn.atk/Stats.broDef + 1)
-			set_bar($BroStats/BroHP, Stats.curBroHealth, Stats.maxBroHealth)
-			checkHealth("bro",Stats.curBroHealth)
+			elif enTarg == 3: 
+				$BasicAttack.play(charaSpots["bro"]+"Damaged")
+				await $BasicAttack.animation_finished 
+				Stats.curBroHealth -= roundi(curEn.atk/Stats.broDef + 1)
+				set_bar($BroStats/BroHP, Stats.curBroHealth, Stats.maxBroHealth)
+				checkHealth("bro",Stats.curBroHealth)
 
 	options_vis_manager("reset")
 	
@@ -160,6 +163,8 @@ func basic_attack(enBar,curEn, curNum):
 		$En1/En1Tex.material = null
 		$En2/En2Tex.material = null
 		$En3/En3Tex.material = null
+		#Check Enemy's health
+		checkHealth(curEn, curEn.curHealth)
 		#Turn the current character's turn off
 		var turnOff = curChara.find_key(true)
 		movedChara[turnOff] = true
@@ -277,11 +282,11 @@ func roll_enemies(spawnTable):
 func checkHealth(target, targetHealth):
 	if targetHealth <= 0: 
 		targetHealth = 0 
-		if target == "avi" or "ast" or "bro":
-			downChara.add(target)
+		if target is String and target == "avi" or "ast" or "bro":
+			downChara.append(target)
 		else:
-			slainEn.add(target)
+			slainEn.append(target)
 			Stats.gems += int(randi_range(1,3)*target.gemMult)
-			target.queue_free()
+			enSpots[target].queue_free()
 			if slainEn.size >= 3:
 				get_tree().reload_scene()
