@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://v0ot5cw2teqr" path="res://assets/enemies/patchet.png" id="2_vxx17"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_o4j7m")
 name = "Patchett"
 texture = ExtResource("2_vxx17")

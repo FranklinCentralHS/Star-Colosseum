@@ -2,9 +2,9 @@ extends Control
 
 var rng = RandomNumberGenerator.new()
 #Export variables for enemy slots
-@export var enOne: Resource = roll_enemies(Stats.spawnsA1)
-@export var enTwo: Resource = roll_enemies(Stats.spawnsA1)
-@export var enThree: Resource = roll_enemies(Stats.spawnsA1)
+@export var enOne: Resource = roll_enemies(Stats.spawnsA1slt1)
+@export var enTwo: Resource = roll_enemies(Stats.spawnsA1slt2)
+@export var enThree: Resource = roll_enemies(Stats.spawnsA1slt3)
 
 #various variables
 var enSelMat = preload("res://materialshader/en1.tres")
@@ -13,15 +13,18 @@ var curChara:Dictionary = {"avi":true, "ast":false, "bro":false}
 var movedChara:Dictionary = {"avi":false,"ast":true,"bro":true}
 var attacking = false
 var charaSpots:Dictionary = {"avi":"ActiveChara", "ast": "BackChara2", "bro": "BackChara1"}
-
+var enSpots:Dictionary = {}
 var defBoosted = []
 var downChara = []
 var slainEn = []
 # Called when the node enters the scene tree for the first time.]
 func _ready() -> void:
 	
+	enSpots.get_or_add(enOne,$En1)
+	enSpots.get_or_add(enTwo,$En2)
+	enSpots.get_or_add(enThree,$En3)
+
 	#Set Value Bars for all HP, IM, and EM
-	var enSpots:Dictionary = {enOne:$En1, enTwo:$En2, enThree:$En3}
 	set_bar($En1/En1Tex/En1HP, enOne.curHealth, enOne.maxHealth)
 	set_bar($En2/En2Tex/En2HP, enTwo.curHealth, enTwo.maxHealth)
 	set_bar($En3/En3Tex/En3HP, enThree.curHealth, enThree.maxHealth)
@@ -46,7 +49,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame. (unused)
 #func _process(delta: float) -> void:
-#	pass
+	#print_debug(slainEn)
 
 #Go to main menu when running
 
@@ -151,7 +154,7 @@ func _on_en_3_sel_pressed() -> void:
 
 #basic attack logic
 func basic_attack(enBar,curEn, curNum):
-	if attacking == true:
+	if attacking == true and slainEn.find(curEn) == -1:
 		attacking = false
 		curEn.curHealth -= roundi(Stats.get(curChara.find_key(true)+"Atk")/curEn.def + 1)
 		set_bar(enBar, curEn.curHealth, curEn.maxHealth)
@@ -160,9 +163,12 @@ func basic_attack(enBar,curEn, curNum):
 		await $BasicAttack.animation_finished 
 		#Reset Attack Button and select outlines
 		$ActiveCharacter/Attack.text = "Attack"
-		$En1/En1Tex.material = null
-		$En2/En2Tex.material = null
-		$En3/En3Tex.material = null
+		if $En1 != null:
+			$En1/En1Tex.material = null
+		if $En2 != null:
+			$En2/En2Tex.material = null
+		if $En3 != null:
+			$En3/En3Tex.material = null
 		#Check Enemy's health
 		checkHealth(curEn, curEn.curHealth)
 		#Turn the current character's turn off
@@ -246,7 +252,12 @@ func _on_attack_pressed() -> void:
 	if attacking == true: 
 		attacking = false
 		$ActiveCharacter/Attack.text = "Attack"
-		$En1/En1Tex.material = null
+		if $En1 != null:
+			$En1/En1Tex.material = null
+		if $En2 != null:
+			$En2/En2Tex.material = null
+		if $En3 != null:
+			$En3/En3Tex.material = null
 		options_vis_manager("reset")
 	elif attacking == false: 
 		attacking = true
@@ -281,12 +292,12 @@ func roll_enemies(spawnTable):
 
 func checkHealth(target, targetHealth):
 	if targetHealth <= 0: 
-		targetHealth = 0 
-		if target is String and target == "avi" or "ast" or "bro":
+		if target is String and (target == "avi" or "ast" or "bro"):
 			downChara.append(target)
 		else:
 			slainEn.append(target)
 			Stats.gems += int(randi_range(1,3)*target.gemMult)
-			enSpots[target].queue_free()
-			if slainEn.size >= 3:
-				get_tree().reload_scene()
+			remove_child(enSpots[target])
+			if slainEn.size() >= 3:
+				get_tree().reload_current_scene()
+				slainEn.clear()
