@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://d21buvmdo131j"]
+[gd_scene load_steps=59 format=3 uid="uid://d21buvmdo131j"]
 
 [ext_resource type="Texture2D" uid="uid://dhfu860nq6gee" path="res://assets/backgrounds/battlebg.png" id="1_fn0o5"]
 [ext_resource type="Script" path="res://src/battle.gd" id="1_wypbb"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://v0ot5cw2teqr" path="res://assets/enemies/patchet.png" id="3_so6n8"]
 [ext_resource type="Texture2D" uid="uid://ippwfv46awcd" path="res://assets/characters/Brookelyn/Brookelyn.png" id="7_osmsv"]
 [ext_resource type="Texture2D" uid="uid://b2jekrp5wf1rw" path="res://assets/characters/astell/astell.png" id="7_ttg76"]
+[ext_resource type="Texture2D" uid="uid://cu3jcu1k1h6s2" path="res://assets/environmentnother/gem icon.png" id="8_tqc34"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjcvf"]
 
@@ -29,6 +30,29 @@ bg_color = Color(0.454902, 0.454902, 0.454902, 0.611765)
 bg_color = Color(0.213841, 0.0790144, 0.0617745, 0.611765)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6wsrc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dj3o6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oypx0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b2ot2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ix1rj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t22vg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x1c31"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_apacv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_icpnf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t0pt0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8c6sa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3ce3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kekju"]
 bg_color = Color(0.239216, 0.941176, 0.337255, 0.654902)
@@ -358,6 +382,22 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_83sjm")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kpmpl")
 text = "Skills"
 flat = false
+
+[node name="ActiveCharaSel" type="Button" parent="ActiveCharacter"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dj3o6")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_oypx0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_b2ot2")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ix1rj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_t22vg")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_x1c31")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_apacv")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_icpnf")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_t0pt0")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_8c6sa")
+theme_override_styles/normal = SubResource("StyleBoxFlat_e3ce3")
 
 [node name="AviStats" type="Panel" parent="."]
 layout_mode = 0
@@ -897,6 +937,22 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_1tq23")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_16j72")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_x1pgl")
 theme_override_styles/normal = SubResource("StyleBoxFlat_3sgh1")
+
+[node name="Gems" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 107.0
+offset_bottom = 64.0
+scale = Vector2(1.68, 1.68)
+
+[node name="GemsTex" type="TextureRect" parent="Gems"]
+layout_mode = 2
+texture = ExtResource("8_tqc34")
+
+[node name="GemCount" type="Label" parent="Gems"]
+layout_mode = 2
+theme = ExtResource("3_q3k0k")
+text = "0"
 
 [connection signal="pressed" from="ActiveCharacter/Attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="TacticsPanel/Run" to="." method="_on_run_pressed"]

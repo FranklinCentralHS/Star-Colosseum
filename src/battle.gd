@@ -2,9 +2,9 @@ extends Control
 
 var rng = RandomNumberGenerator.new()
 #Export variables for enemy slots
-@export var enOne: Resource = roll_enemies(Stats.spawnsA1slt1)
-@export var enTwo: Resource = roll_enemies(Stats.spawnsA1slt2)
-@export var enThree: Resource = roll_enemies(Stats.spawnsA1slt3)
+@export var enOne: Resource = roll_enemies(Stats.spawnsA1).duplicate()
+@export var enTwo: Resource = roll_enemies(Stats.spawnsA1).duplicate()
+@export var enThree: Resource = roll_enemies(Stats.spawnsA1).duplicate()
 
 #various variables
 var enSelMat = preload("res://materialshader/en1.tres")
@@ -36,6 +36,7 @@ func _ready() -> void:
 	set_bar($BroStats/BroHP/BroIM, Stats.curBroIM, Stats.maxBroIM)
 	set_bar($EMStats/EM, Stats.curEM, Stats.maxEM)
 	menu_manager()
+	$Gems/GemCount.text = str(Stats.gems)
 
 	#Set the enemies' texture to the assigned enemies
 	$En1/En1Tex.texture = enOne.texture
@@ -297,6 +298,7 @@ func checkHealth(target, targetHealth):
 		else:
 			slainEn.append(target)
 			Stats.gems += int(randi_range(1,3)*target.gemMult)
+			$Gems/GemCount.text = str(Stats.gems)
 			remove_child(enSpots[target])
 			if slainEn.size() >= 3:
 				get_tree().reload_current_scene()

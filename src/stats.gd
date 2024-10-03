@@ -6,9 +6,7 @@ var curEM = 100
 var activeChara = "avi"
 var defMod = 2 
 var gems = 0 
-var spawnsA1slt1 = ["res://src/enemydata/grybus.tres","res://src/enemydata/patchett.tres","res://src/enemydata/stalagfite.tres"]
-var spawnsA1slt2 = ["res://src/enemydata/grybus.tres","res://src/enemydata/patchett.tres","res://src/enemydata/stalagfite.tres"]
-var spawnsA1slt3 = ["res://src/enemydata/grybus.tres","res://src/enemydata/patchett.tres","res://src/enemydata/stalagfite.tres"]
+var spawnsA1 = ["res://src/enemydata/grybus.tres","res://src/enemydata/patchett.tres","res://src/enemydata/stalagfite.tres"]
 
 #Avia's stats
 var maxAviHealth = 30

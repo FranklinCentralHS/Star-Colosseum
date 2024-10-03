@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dr6os8h0ve8sp"]
+[gd_scene load_steps=9 format=3 uid="uid://dr6os8h0ve8sp"]
 
 [ext_resource type="Texture2D" uid="uid://dg7cwr0m5jn4u" path="res://assets/backgrounds/mainmenubg.png" id="1_a06wk"]
 [ext_resource type="Script" path="res://src/mainmenu.gd" id="1_nwqup"]
 [ext_resource type="Theme" uid="uid://cpp0f50owjch8" path="res://themes/battleboxes.tres" id="3_8jgmg"]
+[ext_resource type="Texture2D" uid="uid://cu3jcu1k1h6s2" path="res://assets/environmentnother/gem icon.png" id="4_lsqu5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i1o23"]
 
@@ -90,13 +91,29 @@ offset_right = 200.0
 offset_bottom = 115.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2.25, 2.365)
+scale = Vector2(2.2128, 2.35139)
 theme = ExtResource("3_8jgmg")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_i1o23")
 theme_override_styles/hover = SubResource("StyleBoxFlat_hqna0")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_vtlx0")
 theme_override_styles/normal = SubResource("StyleBoxFlat_wd5eu")
 text = "Shop
-"
+(TBA)"
+
+[node name="Gems" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 107.0
+offset_bottom = 64.0
+scale = Vector2(1.71878, 1.68)
+
+[node name="GemsTex" type="TextureRect" parent="Gems"]
+layout_mode = 2
+texture = ExtResource("4_lsqu5")
+
+[node name="GemCount" type="Label" parent="Gems"]
+layout_mode = 2
+theme = ExtResource("3_8jgmg")
+text = "0"
 
 [connection signal="pressed" from="Fight" to="." method="_on_fight_pressed"]
