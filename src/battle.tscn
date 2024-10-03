@@ -1,15 +1,13 @@
-[gd_scene load_steps=50 format=3 uid="uid://d21buvmdo131j"]
+[gd_scene load_steps=59 format=3 uid="uid://d21buvmdo131j"]
 
 [ext_resource type="Texture2D" uid="uid://dhfu860nq6gee" path="res://assets/backgrounds/battlebg.png" id="1_fn0o5"]
 [ext_resource type="Script" path="res://src/battle.gd" id="1_wypbb"]
 [ext_resource type="Texture2D" uid="uid://bl6hl4knwc0gn" path="res://assets/characters/avia/Aviaunanim.png" id="2_brsj4"]
-[ext_resource type="Resource" uid="uid://c3gfcbgnam72c" path="res://src/enemydata/patchett.tres" id="2_wi604"]
 [ext_resource type="Theme" uid="uid://cpp0f50owjch8" path="res://themes/battleboxes.tres" id="3_q3k0k"]
 [ext_resource type="Texture2D" uid="uid://v0ot5cw2teqr" path="res://assets/enemies/patchet.png" id="3_so6n8"]
-[ext_resource type="Resource" uid="uid://cb8mymk4lplcx" path="res://src/enemydata/stalagfite.tres" id="3_tili2"]
-[ext_resource type="Resource" uid="uid://d3mgfb2afpw0j" path="res://src/enemydata/grybus.tres" id="4_ultse"]
 [ext_resource type="Texture2D" uid="uid://ippwfv46awcd" path="res://assets/characters/Brookelyn/Brookelyn.png" id="7_osmsv"]
 [ext_resource type="Texture2D" uid="uid://b2jekrp5wf1rw" path="res://assets/characters/astell/astell.png" id="7_ttg76"]
+[ext_resource type="Texture2D" uid="uid://cu3jcu1k1h6s2" path="res://assets/environmentnother/gem icon.png" id="8_tqc34"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjcvf"]
 
@@ -33,6 +31,32 @@ bg_color = Color(0.213841, 0.0790144, 0.0617745, 0.611765)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6wsrc"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dj3o6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oypx0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b2ot2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ix1rj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t22vg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x1c31"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_apacv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_icpnf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t0pt0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8c6sa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3ce3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kekju"]
+bg_color = Color(0.239216, 0.941176, 0.337255, 0.654902)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhe5f"]
 bg_color = Color(0.0672831, 0.128184, 0.0786211, 1)
 border_width_left = 1
@@ -47,32 +71,6 @@ expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_galor"]
 bg_color = Color(0, 0.782773, 0.289492, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iffub"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_do57g"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5x1fv"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wqg5c"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e04rd"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wira5"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxval"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1tq23"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_16j72"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x1pgl"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3sgh1"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kekju"]
-bg_color = Color(0.239216, 0.941176, 0.337255, 0.654902)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yexm7"]
 bg_color = Color(0.0382337, 0.0761547, 0.142569, 1)
@@ -182,33 +180,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_82v7h"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("En1/En1Tex:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(-0.0333333),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ActiveCharacter:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_b031b"]
 resource_name = "En2Damaged"
 tracks/0/type = "value"
@@ -239,6 +210,33 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_82v7h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("En1/En1Tex:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ActiveCharacter:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f83ot"]
 _data = {
 "ActiveCharaDamaged": SubResource("Animation_42d04"),
@@ -250,6 +248,29 @@ _data = {
 "RESET": SubResource("Animation_82v7h")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iffub"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_do57g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5x1fv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wqg5c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e04rd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wira5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxval"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1tq23"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_16j72"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x1pgl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3sgh1"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
 [node name="Battle" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -260,9 +281,6 @@ offset_right = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wypbb")
-enOne = ExtResource("2_wi604")
-enTwo = ExtResource("3_tili2")
-enThree = ExtResource("4_ultse")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
@@ -365,143 +383,21 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_kpmpl")
 text = "Skills"
 flat = false
 
-[node name="En3" type="VBoxContainer" parent="."]
-layout_mode = 2
-offset_left = 978.0
-offset_top = 125.0
-offset_right = 1183.0
-offset_bottom = 330.0
-
-[node name="En3Tex" type="TextureRect" parent="En3"]
-layout_mode = 2
-texture = ExtResource("3_so6n8")
-expand_mode = 4
-
-[node name="En3HP" type="ProgressBar" parent="En3/En3Tex"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -85.5
-offset_top = 7.0
-offset_right = 60.5
-offset_bottom = 26.0
-grow_horizontal = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_bhe5f")
-theme_override_styles/fill = SubResource("StyleBoxFlat_galor")
-step = 1.0
-value = 50.0
-show_percentage = false
-
-[node name="En3Sel" type="Button" parent="En3/En3Tex"]
+[node name="ActiveCharaSel" type="Button" parent="ActiveCharacter"]
 layout_mode = 0
-offset_left = 28.0
-offset_top = 57.0
-offset_right = 147.0
-offset_bottom = 162.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_iffub")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_do57g")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_5x1fv")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_wqg5c")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_e04rd")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_wira5")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_lxval")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_1tq23")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_16j72")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_x1pgl")
-theme_override_styles/normal = SubResource("StyleBoxFlat_3sgh1")
-
-[node name="En2" type="VBoxContainer" parent="."]
-layout_mode = 2
-offset_left = 981.0
-offset_top = 346.0
-offset_right = 1186.0
-offset_bottom = 551.0
-
-[node name="En2Tex" type="TextureRect" parent="En2"]
-layout_mode = 2
-texture = ExtResource("3_so6n8")
-expand_mode = 4
-
-[node name="En2HP" type="ProgressBar" parent="En2/En2Tex"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -85.5
-offset_top = 7.0
-offset_right = 60.5
-offset_bottom = 26.0
-grow_horizontal = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_bhe5f")
-theme_override_styles/fill = SubResource("StyleBoxFlat_galor")
-step = 1.0
-value = 50.0
-show_percentage = false
-
-[node name="En2Sel" type="Button" parent="En2/En2Tex"]
-layout_mode = 0
-offset_left = 28.0
-offset_top = 57.0
-offset_right = 147.0
-offset_bottom = 162.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_iffub")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_do57g")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_5x1fv")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_wqg5c")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_e04rd")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_wira5")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_lxval")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_1tq23")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_16j72")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_x1pgl")
-theme_override_styles/normal = SubResource("StyleBoxFlat_3sgh1")
-
-[node name="En1" type="VBoxContainer" parent="."]
-layout_mode = 2
-offset_left = 783.0
-offset_top = 250.0
-offset_right = 988.0
-offset_bottom = 455.0
-
-[node name="En1Tex" type="TextureRect" parent="En1"]
-layout_mode = 2
-texture = ExtResource("3_so6n8")
-expand_mode = 4
-
-[node name="En1HP" type="ProgressBar" parent="En1/En1Tex"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -85.5
-offset_top = 7.0
-offset_right = 60.5
-offset_bottom = 26.0
-grow_horizontal = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_bhe5f")
-theme_override_styles/fill = SubResource("StyleBoxFlat_galor")
-step = 1.0
-value = 50.0
-show_percentage = false
-
-[node name="En1Sel" type="Button" parent="En1/En1Tex"]
-layout_mode = 0
-offset_left = 28.0
-offset_top = 57.0
-offset_right = 147.0
-offset_bottom = 162.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_iffub")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_do57g")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_5x1fv")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_wqg5c")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_e04rd")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_wira5")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_lxval")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_1tq23")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_16j72")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_x1pgl")
-theme_override_styles/normal = SubResource("StyleBoxFlat_3sgh1")
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dj3o6")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_oypx0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_b2ot2")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ix1rj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_t22vg")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_x1c31")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_apacv")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_icpnf")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_t0pt0")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_8c6sa")
+theme_override_styles/normal = SubResource("StyleBoxFlat_e3ce3")
 
 [node name="AviStats" type="Panel" parent="."]
 layout_mode = 0
@@ -904,15 +800,169 @@ offset_bottom = 424.0
 scale = Vector2(2.35, 2.35)
 texture = ExtResource("7_osmsv")
 
+[node name="En3" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 978.0
+offset_top = 125.0
+offset_right = 1183.0
+offset_bottom = 330.0
+
+[node name="En3Tex" type="TextureRect" parent="En3"]
+layout_mode = 2
+texture = ExtResource("3_so6n8")
+expand_mode = 4
+
+[node name="En3HP" type="ProgressBar" parent="En3/En3Tex"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -85.5
+offset_top = 7.0
+offset_right = 60.5
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bhe5f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_galor")
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="En3Sel" type="Button" parent="En3/En3Tex"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 57.0
+offset_right = 147.0
+offset_bottom = 162.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iffub")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_do57g")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_5x1fv")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_wqg5c")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_e04rd")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_wira5")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_lxval")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_1tq23")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_16j72")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_x1pgl")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3sgh1")
+
+[node name="En1" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 783.0
+offset_top = 250.0
+offset_right = 988.0
+offset_bottom = 455.0
+
+[node name="En1Tex" type="TextureRect" parent="En1"]
+layout_mode = 2
+texture = ExtResource("3_so6n8")
+expand_mode = 4
+
+[node name="En1HP" type="ProgressBar" parent="En1/En1Tex"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -85.5
+offset_top = 7.0
+offset_right = 60.5
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bhe5f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_galor")
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="En1Sel" type="Button" parent="En1/En1Tex"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 57.0
+offset_right = 147.0
+offset_bottom = 162.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iffub")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_do57g")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_5x1fv")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_wqg5c")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_e04rd")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_wira5")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_lxval")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_1tq23")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_16j72")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_x1pgl")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3sgh1")
+
+[node name="En2" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 981.0
+offset_top = 346.0
+offset_right = 1186.0
+offset_bottom = 551.0
+
+[node name="En2Tex" type="TextureRect" parent="En2"]
+layout_mode = 2
+texture = ExtResource("3_so6n8")
+expand_mode = 4
+
+[node name="En2HP" type="ProgressBar" parent="En2/En2Tex"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -85.5
+offset_top = 7.0
+offset_right = 60.5
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bhe5f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_galor")
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="En2Sel" type="Button" parent="En2/En2Tex"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 57.0
+offset_right = 147.0
+offset_bottom = 162.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iffub")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_do57g")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_5x1fv")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_wqg5c")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_e04rd")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_wira5")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_lxval")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_1tq23")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_16j72")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_x1pgl")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3sgh1")
+
+[node name="Gems" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 107.0
+offset_bottom = 64.0
+scale = Vector2(1.68, 1.68)
+
+[node name="GemsTex" type="TextureRect" parent="Gems"]
+layout_mode = 2
+texture = ExtResource("8_tqc34")
+
+[node name="GemCount" type="Label" parent="Gems"]
+layout_mode = 2
+theme = ExtResource("3_q3k0k")
+text = "0"
+
 [connection signal="pressed" from="ActiveCharacter/Attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="TacticsPanel/Run" to="." method="_on_run_pressed"]
+[connection signal="pressed" from="TacticsPanel/Back" to="." method="_on_back_pressed"]
 [connection signal="mouse_entered" from="En3/En3Tex/En3Sel" to="." method="_on_en_3_sel_mouse_entered"]
 [connection signal="mouse_exited" from="En3/En3Tex/En3Sel" to="." method="_on_en_3_sel_mouse_exited"]
 [connection signal="pressed" from="En3/En3Tex/En3Sel" to="." method="_on_en_3_sel_pressed"]
-[connection signal="mouse_entered" from="En2/En2Tex/En2Sel" to="." method="_on_en_2_sel_mouse_entered"]
-[connection signal="mouse_exited" from="En2/En2Tex/En2Sel" to="." method="_on_en_2_sel_mouse_exited"]
-[connection signal="pressed" from="En2/En2Tex/En2Sel" to="." method="_on_en_2_sel_pressed"]
 [connection signal="mouse_entered" from="En1/En1Tex/En1Sel" to="." method="_on_en_1_sel_mouse_entered"]
 [connection signal="mouse_exited" from="En1/En1Tex/En1Sel" to="." method="_on_en_1_sel_mouse_exited"]
 [connection signal="pressed" from="En1/En1Tex/En1Sel" to="." method="_on_en_1_sel_pressed"]
-[connection signal="pressed" from="TacticsPanel/Run" to="." method="_on_run_pressed"]
-[connection signal="pressed" from="TacticsPanel/Back" to="." method="_on_back_pressed"]
+[connection signal="mouse_entered" from="En2/En2Tex/En2Sel" to="." method="_on_en_2_sel_mouse_entered"]
+[connection signal="mouse_exited" from="En2/En2Tex/En2Sel" to="." method="_on_en_2_sel_mouse_exited"]
+[connection signal="pressed" from="En2/En2Tex/En2Sel" to="." method="_on_en_2_sel_pressed"]

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://rvg77c6s4gec" path="res://assets/enemies/Stalagfite.png" id="2_r52qn"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_43eku")
 name = "Stalagfite"
 texture = ExtResource("2_r52qn")
