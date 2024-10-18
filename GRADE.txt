@@ -1,0 +1,20 @@
+Group Points - 50:
+30/30 points for making a game that functions and is sufficiently complex
+—excellent work! would love to hear about it if you continue working on this.
+7/10 points for following the pull request process correctly (even if working solo, just without reviews)
+—good commits, but I only see 1 pull request
+10/10 points for marketing materials
+-very cool poster!
+
+47/50
+
+Individual Points - 25:
+10/10 points for making meaningful contributions to your project
+10/10 points for providing a thoughtful reflection in your README file
+5/5 points for reviewing your collaborators’ pull requests (if solo, instead these points will come from your reflection)
+
+25/25
+
+
+
+72/75
